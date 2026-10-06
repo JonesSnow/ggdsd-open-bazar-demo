@@ -1,11 +1,19 @@
 /**
- * Generates the static SVG artwork used across the Open Bazar demo:
- * category tiles, business covers/galleries, product imagery, OG image and favicon.
+ * Generates the static SVG artwork used across the Open Bazar demo.
+ *
+ * Output structure (see IMAGE_GUIDE.md):
+ *   public/images/vendors/<category>-<variant>.svg   business covers, galleries, products
+ *   public/images/categories/<category>.svg          category tiles
+ *   public/images/hero/hero-open-bazaar.svg          homepage hero backdrop
+ *   public/images/events/open-bazaar-5.svg           upcoming event band
+ *   public/images/campus/campus-stalls.svg           campus / about sections
+ *   public/images/brand/og-image.svg · favicon.svg   brand assets
  *
  * Run: node scripts/generate-images.mjs
  *
- * The artwork is abstract and editorial on purpose — flat geometric compositions
- * with a soft paper tint, so the demo needs no external photography.
+ * The artwork is abstract and editorial on purpose — flat geometric
+ * compositions on a soft paper tint, so the demo needs no external
+ * photography and remains fully self-contained.
  */
 
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -15,7 +23,7 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const outDir = join(root, "public", "images");
 
-/* ── Seeded PRNG ─────────────────────────────────────────── */
+/* ── Seeded PRNG ─────────────────────────────────── */
 function mulberry32(seed) {
   let a = seed >>> 0;
   return function () {
@@ -27,7 +35,7 @@ function mulberry32(seed) {
   };
 }
 
-/* ── Category art palettes ───────────────────────────────── */
+/* ── Category art palettes ───────────────────────── */
 const CATEGORY_ART = {
   "fashion-accessories": {
     bg: "#F5EFE7",
@@ -66,8 +74,8 @@ const CATEGORY_ART = {
     tones: ["#1D4533", "#B8872A", "#3E8562", "#422D18", "#D9B36A"],
   },
   "event-services": {
-    bg: "#F6F0EC",
-    tones: ["#8C3B2E", "#C99B3E", "#2C6B4C", "#A8553F", "#7A561E"],
+    bg: "#F6F0E9",
+    tones: ["#8A4B5C", "#C99B3E", "#2C6B4C", "#A8553F", "#5C401C"],
   },
 };
 
@@ -261,6 +269,103 @@ function compose(categorySlug, variant) {
 </svg>`;
 }
 
+/* ── Dedicated compositions ────────────────────────────── */
+
+/** Homepage hero backdrop — a wide bazaar arch scene (1600×1000). */
+function heroArtwork() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Open Bazaar campus scene">
+  <rect width="1600" height="1000" fill="#F5F1E8"/>
+  <circle cx="1330" cy="140" r="330" fill="#2C6B4C" opacity="0.10"/>
+  <circle cx="220" cy="830" r="300" fill="#C99B3E" opacity="0.10"/>
+  <g fill="none" stroke="#23563D" stroke-opacity="0.16" stroke-width="2">
+    <circle cx="800" cy="560" r="430"/>
+    <circle cx="800" cy="560" r="360"/>
+    <circle cx="800" cy="560" r="290"/>
+  </g>
+  <path d="M560 880 L560 420 A 240 240 0 0 1 1040 420 L 1040 880 Z" fill="#2C6B4C" opacity="0.92"/>
+  <path d="M620 880 L620 450 A 180 180 0 0 1 980 450 L 980 880 Z" fill="#F4E8CE"/>
+  <path d="M620 880 L620 450 A 180 180 0 0 1 980 450" fill="none" stroke="#C99B3E" stroke-width="10"/>
+  <path d="M560 500 A 240 240 0 0 1 1040 500" fill="none" stroke="#C99B3E" stroke-width="6" opacity="0.6"/>
+  <rect x="690" y="640" width="220" height="240" rx="10" fill="#B8872A" opacity="0.9"/>
+  <rect x="712" y="664" width="176" height="120" rx="6" fill="#F5F1E8"/>
+  <path d="M300 340 Q 800 470 1300 340" stroke="#23563D" stroke-width="7" fill="none" opacity="0.75"/>
+  ${[380, 540, 700, 860, 1020, 1180].map((x, i) => {
+    const y = 340 + Math.sin((i / 5) * Math.PI) * 55;
+    const fill = ["#C99B3E", "#8FBFA4", "#8A4B5C"][i % 3];
+    return `<path d="M${x} ${y} L${x + 56} ${y + 5} L${x + 9} ${y + 96} Z" fill="${fill}" opacity="0.8"/>`;
+  }).join("\n  ")}
+  <circle cx="290" cy="700" r="60" fill="#C99B3E" opacity="0.35"/>
+  <circle cx="1310" cy="640" r="74" fill="#2C6B4C" opacity="0.28"/>
+  <circle cx="220" cy="240" r="26" fill="#8A4B5C" opacity="0.35"/>
+  <circle cx="1390" cy="220" r="20" fill="#B8872A" opacity="0.4"/>
+  <rect x="40" y="40" width="1520" height="920" rx="30" fill="none" stroke="#23563D" stroke-opacity="0.16" stroke-width="2"/>
+</svg>`;
+}
+
+/** Event band artwork — stage, bunting and a crowd (1600×900). */
+function eventArtwork() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Open Bazaar 5.0 event artwork">
+  <rect width="1600" height="900" fill="#0C1F17"/>
+  <circle cx="1380" cy="120" r="340" fill="#2C6B4C" opacity="0.35"/>
+  <circle cx="180" cy="790" r="280" fill="#C99B3E" opacity="0.14"/>
+  <g stroke="#B9D7C6" stroke-opacity="0.14" stroke-width="14" fill="none" stroke-linecap="round">
+    <path d="M560 90 L 700 420"/>
+    <path d="M1040 90 L 900 420"/>
+    <path d="M800 60 L 800 430"/>
+  </g>
+  <path d="M360 560 Q 800 430 1240 560 L 1240 640 Q 800 520 360 640 Z" fill="#18382B"/>
+  <path d="M360 560 Q 800 430 1240 560" fill="none" stroke="#DAB669" stroke-width="6"/>
+  ${[440, 580, 720, 860, 1000, 1140].map((x, i) => {
+    const y = 545 + Math.sin((i / 5) * Math.PI) * 34;
+    const fill = ["#C99B3E", "#8FBFA4", "#DAB669"][i % 3];
+    return `<path d="M${x} ${y} L${x + 52} ${y + 5} L${x + 8} ${y + 92} Z" fill="${fill}" opacity="0.85"/>`;
+  }).join("\n  ")}
+  <rect x="730" y="470" width="140" height="90" rx="8" fill="#C99B3E"/>
+  <rect x="752" y="492" width="96" height="46" rx="5" fill="#0C1F17" opacity="0.85"/>
+  <g fill="#B9D7C6">
+    ${Array.from({ length: 42 }, (_, i) => {
+      const x = 240 + (i * 28) % 1120;
+      const y = 690 + ((i * 53) % 120);
+      return `<circle cx="${x}" cy="${y}" r="${6 + (i % 3) * 2}" opacity="${0.25 + (i % 4) * 0.12}"/>`;
+    }).join("\n    ")}
+  </g>
+  <rect x="40" y="40" width="1520" height="820" rx="28" fill="none" stroke="#B9D7C6" stroke-opacity="0.22" stroke-width="2"/>
+</svg>`;
+}
+
+/** Campus scene — a row of stall arches (1200×900). */
+function campusArtwork() {
+  const stalls = [170, 430, 690, 950].map((x, i) => {
+    const tones = [
+      ["#2C6B4C", "#C99B3E"],
+      ["#8A4B5C", "#D9B36A"],
+      ["#B8872A", "#8FBFA4"],
+      ["#3E8562", "#F4E8CE"],
+    ][i];
+    return `
+    <path d="M${x - 90} 700 L${x - 90} 420 A 90 90 0 0 1 ${x + 90} 420 L${x + 90} 700 Z" fill="${tones[0]}" opacity="0.9"/>
+    <path d="M${x - 90} 480 A 90 90 0 0 1 ${x + 90} 480" fill="none" stroke="${tones[1]}" stroke-width="7" opacity="0.8"/>
+    <rect x="${x - 52}" y="560" width="104" height="140" rx="8" fill="#F5F1E8" opacity="0.92"/>
+    <rect x="${x - 52}" y="560" width="104" height="26" rx="8" fill="${tones[1]}" opacity="0.85"/>`;
+  }).join("\n  ");
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Campus stalls scene">
+  <rect width="1200" height="900" fill="#F6F0E4"/>
+  <circle cx="1050" cy="160" r="260" fill="#C99B3E" opacity="0.12"/>
+  <circle cx="140" cy="760" r="240" fill="#2C6B4C" opacity="0.10"/>
+  <rect x="0" y="700" width="1200" height="200" fill="#DCEBE2"/>
+  <rect x="0" y="700" width="1200" height="10" fill="#8FBFA4" opacity="0.6"/>
+  ${stalls}
+  <path d="M120 260 Q 600 360 1080 260" stroke="#23563D" stroke-width="6" fill="none" opacity="0.5"/>
+  ${[240, 480, 720, 960].map((x, i) => {
+    const y = 260 + Math.sin((i / 3) * Math.PI) * 40;
+    return `<path d="M${x} ${y} L${x + 44} ${y + 4} L${x + 7} ${y + 78} Z" fill="${["#C99B3E", "#8FBFA4", "#8A4B5C", "#B8872A"][i]}" opacity="0.75"/>`;
+  }).join("\n  ")}
+  <circle cx="240" cy="180" r="22" fill="#C99B3E" opacity="0.35"/>
+  <circle cx="990" cy="140" r="18" fill="#2C6B4C" opacity="0.3"/>
+  <rect x="28" y="28" width="1144" height="844" rx="28" fill="none" stroke="#23563D" stroke-opacity="0.16" stroke-width="2"/>
+</svg>`;
+}
+
 function ogImage() {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="GGDSD Open Bazar">
   <rect width="1200" height="630" fill="#0C1F17"/>
@@ -298,14 +403,21 @@ function write(path, content) {
 let count = 0;
 
 for (const slug of CATEGORY_SLUGS) {
+  // Vendor imagery: six deterministic variants per category.
   for (let v = 0; v < 6; v++) {
-    write(join(outDir, "art", `${slug}-${v}.svg`), compose(slug, v));
+    write(join(outDir, "vendors", `${slug}-${v}.svg`), compose(slug, v));
     count++;
   }
+  // Category tile: the canonical (first) composition.
+  write(join(outDir, "categories", `${slug}.svg`), compose(slug, 0));
+  count++;
 }
 
-write(join(outDir, "og-image.svg"), ogImage());
-write(join(outDir, "favicon.svg"), favicon());
-count += 2;
+write(join(outDir, "hero", "hero-open-bazaar.svg"), heroArtwork());
+write(join(outDir, "events", "open-bazaar-5.svg"), eventArtwork());
+write(join(outDir, "campus", "campus-stalls.svg"), campusArtwork());
+write(join(outDir, "brand", "og-image.svg"), ogImage());
+write(join(outDir, "brand", "favicon.svg"), favicon());
+count += 5;
 
 console.log(`Generated ${count} images in ${outDir.replace(root, ".")}`);

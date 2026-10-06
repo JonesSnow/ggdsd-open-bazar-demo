@@ -178,6 +178,63 @@ body {
   animation: marquee 36s linear infinite;
 }
 
+/* ── Entrance curtain (first visit) ──────────────────── */
+
+.curtain-root {
+  position: fixed;
+  inset: 0;
+  z-index: 600;
+  pointer-events: none;
+}
+
+.curtain-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  background: var(--color-pine-950);
+  animation: curtain-sweep 700ms cubic-bezier(0.7, 0, 0.2, 1) 240ms both;
+}
+
+.curtain-left {
+  left: 0;
+  border-right: 2px solid var(--color-brass-500);
+}
+
+.curtain-right {
+  right: 0;
+  animation-name: curtain-sweep-right;
+}
+
+.curtain-mark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  animation: curtain-mark 880ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes curtain-sweep {
+  to { transform: translateX(-102%); }
+}
+
+@keyframes curtain-sweep-right {
+  to { transform: translateX(102%); }
+}
+
+@keyframes curtain-mark {
+  0% { opacity: 0; transform: scale(0.94); }
+  22% { opacity: 1; transform: scale(1); }
+  68% { opacity: 1; }
+  100% { opacity: 0; transform: scale(0.99); }
+}
+
+/* ── Page enter (plays under the curtain) ────────────── */
+
+.page-enter {
+  animation: fade-up 620ms cubic-bezier(0.22, 1, 0.36, 1) 300ms both;
+}
+
 /* ── Reduced motion ────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {

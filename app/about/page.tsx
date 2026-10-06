@@ -5,6 +5,7 @@ import { Card } from "@/src/components/ui/card";
 import { Container, Reveal, SectionHeading } from "@/src/components/ui/section";
 import { LogoMark } from "@/src/components/ui/logo";
 import { FaqItem } from "@/src/components/about/faq-item";
+import { campusArt } from "@/src/utils/images";
 import { siteConfig } from "@/src/data/site";
 import { faqs } from "@/src/data/site";
 
@@ -96,6 +97,29 @@ export default function AboutPage() {
             align="left"
             level={2}
           />
+          {/* Campus scene */}
+          <Reveal>
+            <div className="relative mb-14 overflow-hidden rounded-pop shadow-soft ring-1 ring-paper-200">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={campusArt()}
+                alt="Abstract illustration of the campus stall rows at GGDSD College"
+                width={1200}
+                height={900}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[4/3] w-full object-cover"
+              />
+              <div className="absolute bottom-5 left-5 rounded-xl bg-paper-50/95 px-4 py-2.5 shadow-soft">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-pine-700">
+                  The bazar floor
+                </p>
+                <p className="font-display text-base font-semibold text-ink-950">
+                  Where every stall has a story
+                </p>
+              </div>
+            </div>
+          </Reveal>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {VALUES.map((value, index) => (
               <Reveal key={value.title} delay={index * 80}>

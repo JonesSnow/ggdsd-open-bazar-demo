@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Open Bazaar 5.0 event artwork">
+  <rect width="1600" height="900" fill="#0C1F17"/>
+  <circle cx="1380" cy="120" r="340" fill="#2C6B4C" opacity="0.35"/>
+  <circle cx="180" cy="790" r="280" fill="#C99B3E" opacity="0.14"/>
+  <g stroke="#B9D7C6" stroke-opacity="0.14" stroke-width="14" fill="none" stroke-linecap="round">
+    <path d="M560 90 L 700 420"/>
+    <path d="M1040 90 L 900 420"/>
+    <path d="M800 60 L 800 430"/>
+  </g>
+  <path d="M360 560 Q 800 430 1240 560 L 1240 640 Q 800 520 360 640 Z" fill="#18382B"/>
+  <path d="M360 560 Q 800 430 1240 560" fill="none" stroke="#DAB669" stroke-width="6"/>
+  <path d="M440 545 L492 550 L448 637 Z" fill="#C99B3E" opacity="0.85"/>
+  <path d="M580 564.9846985779441 L632 569.9846985779441 L588 656.9846985779441 Z" fill="#8FBFA4" opacity="0.85"/>
+  <path d="M720 577.3359215540352 L772 582.3359215540352 L728 669.3359215540352 Z" fill="#DAB669" opacity="0.85"/>
+  <path d="M860 577.3359215540352 L912 582.3359215540352 L868 669.3359215540352 Z" fill="#C99B3E" opacity="0.85"/>
+  <path d="M1000 564.9846985779441 L1052 569.9846985779441 L1008 656.9846985779441 Z" fill="#8FBFA4" opacity="0.85"/>
+  <path d="M1140 545 L1192 550 L1148 637 Z" fill="#DAB669" opacity="0.85"/>
+  <rect x="730" y="470" width="140" height="90" rx="8" fill="#C99B3E"/>
+  <rect x="752" y="492" width="96" height="46" rx="5" fill="#0C1F17" opacity="0.85"/>
+  <g fill="#B9D7C6">
+    <circle cx="240" cy="690" r="6" opacity="0.25"/>
+    <circle cx="268" cy="743" r="8" opacity="0.37"/>
+    <circle cx="296" cy="796" r="10" opacity="0.49"/>
+    <circle cx="324" cy="729" r="6" opacity="0.61"/>
+    <circle cx="352" cy="782" r="8" opacity="0.25"/>
+    <circle cx="380" cy="715" r="10" opacity="0.37"/>
+    <circle cx="408" cy="768" r="6" opacity="0.49"/>
+    <circle cx="436" cy="701" r="8" opacity="0.61"/>
+    <circle cx="464" cy="754" r="10" opacity="0.25"/>
+    <circle cx="492" cy="807" r="6" opacity="0.37"/>
+    <circle cx="520" cy="740" r="8" opacity="0.49"/>
+    <circle cx="548" cy="793" r="10" opacity="0.61"/>
+    <circle cx="576" cy="726" r="6" opacity="0.25"/>
+    <circle cx="604" cy="779" r="8" opacity="0.37"/>
+    <circle cx="632" cy="712" r="10" opacity="0.49"/>
+    <circle cx="660" cy="765" r="6" opacity="0.61"/>
+    <circle cx="688" cy="698" r="8" opacity="0.25"/>
+    <circle cx="716" cy="751" r="10" opacity="0.37"/>
+    <circle cx="744" cy="804" r="6" opacity="0.49"/>
+    <circle cx="772" cy="737" r="8" opacity="0.61"/>
+    <circle cx="800" cy="790" r="10" opacity="0.25"/>
+    <circle cx="828" cy="723" r="6" opacity="0.37"/>
+    <circle cx="856" cy="776" r="8" opacity="0.49"/>
+    <circle cx="884" cy="709" r="10" opacity="0.61"/>
+    <circle cx="912" cy="762" r="6" opacity="0.25"/>
+    <circle cx="940" cy="695" r="8" opacity="0.37"/>
+    <circle cx="968" cy="748" r="10" opacity="0.49"/>
+    <circle cx="996" cy="801" r="6" opacity="0.61"/>
+    <circle cx="1024" cy="734" r="8" opacity="0.25"/>
+    <circle cx="1052" cy="787" r="10" opacity="0.37"/>
+    <circle cx="1080" cy="720" r="6" opacity="0.49"/>
+    <circle cx="1108" cy="773" r="8" opacity="0.61"/>
+    <circle cx="1136" cy="706" r="10" opacity="0.25"/>
+    <circle cx="1164" cy="759" r="6" opacity="0.37"/>
+    <circle cx="1192" cy="692" r="8" opacity="0.49"/>
+    <circle cx="1220" cy="745" r="10" opacity="0.61"/>
+    <circle cx="1248" cy="798" r="6" opacity="0.25"/>
+    <circle cx="1276" cy="731" r="8" opacity="0.37"/>
+    <circle cx="1304" cy="784" r="10" opacity="0.49"/>
+    <circle cx="1332" cy="717" r="6" opacity="0.61"/>
+    <circle cx="240" cy="770" r="8" opacity="0.25"/>
+    <circle cx="268" cy="703" r="10" opacity="0.37"/>
+  </g>
+  <rect x="40" y="40" width="1520" height="820" rx="28" fill="none" stroke="#B9D7C6" stroke-opacity="0.22" stroke-width="2"/>
+</svg>

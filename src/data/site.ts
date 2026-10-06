@@ -4,40 +4,43 @@ export const siteConfig = {
   name: "GGDSD Open Bazar",
   shortName: "Open Bazar",
   tagline: "The campus business directory",
+  edition: "Open Bazaar 5.0",
   institution: "GGDSD College",
   institutionCity: "Chandigarh",
   council: "Institutions' Innovation Council",
+  councilShort: "IIC",
   cell: "Startup Cell",
   demoNotice:
-    "Frontend demonstration prototype. All listings, people and contacts are fictional placeholder data.",
+    "Frontend demonstration prototype. All listings, people, events and contacts are fictional placeholder data.",
   domain: "openbazar.ggdsd.ac.in",
 };
 
+/** Primary navigation — the public-facing IA. */
 export const navItems: NavItem[] = [
   {
-    label: "Directory",
+    label: "Home",
+    href: "/",
+    description: "The Open Bazar story",
+  },
+  {
+    label: "Explore Shops",
     href: "/directory",
-    description: "Browse every registered business",
+    description: "Every registered stall and venture",
   },
   {
-    label: "Categories",
-    href: "/categories",
-    description: "Shop by what you're looking for",
+    label: "Startups",
+    href: "/startups",
+    description: "Student, alumni and IIC ventures",
   },
   {
-    label: "About",
+    label: "Become Sellers",
+    href: "/register",
+    description: "Join the bazar floor",
+  },
+  {
+    label: "About Us",
     href: "/about",
     description: "GGDSD, the IIC and the Startup Cell",
-  },
-  {
-    label: "Testimonials",
-    href: "/testimonials",
-    description: "Stories from the community",
-  },
-  {
-    label: "Contact",
-    href: "/contact",
-    description: "Enquiries and utilities",
   },
 ];
 
@@ -45,10 +48,19 @@ export const footerSections: FooterSection[] = [
   {
     title: "Explore",
     links: [
-      { label: "Business directory", href: "/directory" },
+      { label: "Explore shops", href: "/directory" },
+      { label: "Startups", href: "/startups" },
       { label: "Categories", href: "/categories" },
       { label: "Featured listings", href: "/directory?featured=1" },
-      { label: "Register your business", href: "/register" },
+    ],
+  },
+  {
+    title: "Community",
+    links: [
+      { label: "Become a seller", href: "/register" },
+      { label: "Testimonials", href: "/testimonials" },
+      { label: "Community impact", href: "/about#impact" },
+      { label: "Upcoming event", href: "/#event" },
     ],
   },
   {
@@ -57,16 +69,7 @@ export const footerSections: FooterSection[] = [
       { label: "About GGDSD", href: "/about" },
       { label: "Innovation Council (IIC)", href: "/about#iic" },
       { label: "Startup Cell", href: "/about#startup-cell" },
-      { label: "Community impact", href: "/about#impact" },
-    ],
-  },
-  {
-    title: "Support",
-    links: [
       { label: "Contact & enquiries", href: "/contact" },
-      { label: "Testimonials", href: "/testimonials" },
-      { label: "Demo admin panel", href: "/admin" },
-      { label: "Site map", href: "/contact#site-map" },
     ],
   },
 ];
@@ -74,8 +77,8 @@ export const footerSections: FooterSection[] = [
 export const announcements: Announcement[] = [
   {
     id: "ann-1",
-    text: "Annual campus fest registrations are open for vendor stalls",
-    href: "/register",
+    text: "Open Bazaar 5.0 — the annual campus edition is coming to the main lawn",
+    href: "/#event",
   },
   {
     id: "ann-2",
@@ -87,6 +90,32 @@ export const announcements: Announcement[] = [
     href: "/about#iic",
   },
 ];
+
+/**
+ * Upcoming Open Bazar event.
+ *
+ * DEMO CONTENT — every field below is fictional placeholder
+ * copy for the prototype. Replace with the real event details
+ * (dates, venue, ticketing) before any institutional launch.
+ */
+export const upcomingEvent = {
+  id: "open-bazaar-5",
+  edition: "Open Bazaar 5.0",
+  tagline: "The annual campus edition",
+  dateLabel: "Date to be announced",
+  venue: "Main Lawn · GGDSD College, Chandigarh",
+  description:
+    "One lawn, a hundred stalls. Open Bazaar 5.0 gathers every student venture, alumni startup and independent campus vendor for a full day of demos, live making, tasting counters and pitch corners — the largest student-run marketplace at GGDSD.",
+  highlights: [
+    "100+ student and alumni stalls across all ten categories",
+    "Live product demos and make-it-yourself counters",
+    "Pitch corner hosted by the Institutions' Innovation Council",
+    "Food court featuring campus chefs and tiffin services",
+    "Networking hour for founders, mentors and buyers",
+  ],
+  ctaPrimary: { label: "Register a stall", href: "/register" },
+  ctaSecondary: { label: "Meet the IIC", href: "/about#iic" },
+} as const;
 
 export const businessTypeLabels = {
   "student-entrepreneur": "Student Entrepreneur",

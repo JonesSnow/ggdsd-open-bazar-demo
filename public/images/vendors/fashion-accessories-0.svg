@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="fashion-accessories artwork">
+  <rect width="1200" height="900" fill="#F5EFE7"/>
+  
+    <circle cx="167" cy="341" r="205" fill="#D9B36A" opacity="0.12"/>
+    <circle cx="993" cy="547" r="320" fill="#3E4440" opacity="0.10"/>
+  <g>
+    <circle cx="893" cy="479" r="3.1" fill="#8A4B5C" opacity="0.16"/>
+    <circle cx="201" cy="41" r="2.6" fill="#8A4B5C" opacity="0.09"/>
+    <circle cx="1116" cy="789" r="2.8" fill="#8A4B5C" opacity="0.11"/>
+    <circle cx="1027" cy="198" r="2.0" fill="#8A4B5C" opacity="0.17"/>
+    <circle cx="470" cy="509" r="1.0" fill="#8A4B5C" opacity="0.17"/>
+    <circle cx="713" cy="384" r="1.2" fill="#8A4B5C" opacity="0.13"/>
+    <circle cx="198" cy="157" r="3.1" fill="#8A4B5C" opacity="0.06"/>
+    <circle cx="811" cy="791" r="1.3" fill="#8A4B5C" opacity="0.11"/>
+    <circle cx="395" cy="659" r="0.9" fill="#8A4B5C" opacity="0.18"/>
+    <circle cx="420" cy="62" r="2.9" fill="#8A4B5C" opacity="0.16"/>
+    <circle cx="127" cy="426" r="3.1" fill="#8A4B5C" opacity="0.15"/>
+    <circle cx="60" cy="347" r="2.7" fill="#8A4B5C" opacity="0.05"/>
+    <circle cx="1115" cy="265" r="2.1" fill="#8A4B5C" opacity="0.08"/>
+    <circle cx="664" cy="587" r="2.8" fill="#8A4B5C" opacity="0.17"/>
+    <circle cx="516" cy="580" r="1.8" fill="#8A4B5C" opacity="0.20"/>
+    <circle cx="944" cy="77" r="2.6" fill="#8A4B5C" opacity="0.08"/>
+    <circle cx="619" cy="628" r="2.4" fill="#8A4B5C" opacity="0.18"/>
+    <circle cx="600" cy="872" r="1.9" fill="#8A4B5C" opacity="0.19"/>
+    <circle cx="364" cy="763" r="2.5" fill="#8A4B5C" opacity="0.20"/>
+    <circle cx="256" cy="180" r="3.0" fill="#8A4B5C" opacity="0.08"/>
+    <circle cx="643" cy="670" r="1.7" fill="#8A4B5C" opacity="0.07"/>
+    <circle cx="189" cy="821" r="2.4" fill="#8A4B5C" opacity="0.09"/>
+    <circle cx="1009" cy="587" r="3.2" fill="#8A4B5C" opacity="0.12"/>
+    <circle cx="830" cy="535" r="2.4" fill="#8A4B5C" opacity="0.18"/>
+    <circle cx="814" cy="480" r="2.5" fill="#8A4B5C" opacity="0.15"/>
+    <circle cx="69" cy="745" r="2.5" fill="#8A4B5C" opacity="0.15"/>
+  </g>
+  <g>
+    
+    <line x1="600" y1="120" x2="600" y2="320" stroke="#3E4440" stroke-width="6"/>
+    <path d="M600 320 C 520 320 470 380 470 460 C 470 540 530 590 600 590 C 670 590 730 540 730 460 C 730 380 680 320 600 320 Z" fill="#C99B3E" opacity="0.92"/>
+    <path d="M600 330 C 545 330 510 375 510 450 C 510 520 555 560 600 560 C 645 560 690 520 690 450 C 690 375 655 330 600 330 Z" fill="#D9B36A" opacity="0.85"/>
+    <path d="M420 470 C 380 470 350 510 350 560 C 350 610 390 645 440 645 C 490 645 530 610 530 560 C 530 510 500 470 420 470 Z" fill="#3E4440" opacity="0.5"/>
+    <path d="M790 380 C 755 380 730 415 730 460 C 730 505 762 535 805 535 C 848 535 880 505 880 460 C 880 415 855 380 790 380 Z" fill="#C99B3E" opacity="0.45"/>
+    <circle cx="600" cy="300" r="26" fill="#D9B36A"/>
+    <circle cx="600" cy="300" r="10" fill="#3E4440" opacity="0.8"/>
+  </g>
+  <rect x="28" y="28" width="1144" height="844" rx="28" fill="none" stroke="#C99B3E" stroke-opacity="0.18" stroke-width="2"/>
+</svg>

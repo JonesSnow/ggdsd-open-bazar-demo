@@ -29,18 +29,23 @@ const STEPS: {
 
 export function HowItWorks() {
   return (
-    <section aria-labelledby="how-it-works" className="bg-pine-950 py-20 text-paper-100 sm:py-24">
+    <section aria-labelledby="why-open-bazar" className="bg-pine-950 py-20 text-paper-100 sm:py-24">
       <Container>
         <div className="mb-12 max-w-2xl">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brass-300">
-            How Open Bazar works
+            Why Open Bazar
           </p>
           <h2
-            id="how-it-works"
+            id="why-open-bazar"
             className="font-display text-3xl font-medium tracking-heading text-paper-50 text-balance sm:text-4xl"
           >
-            From a notebook idea to a campus fixture
+            More than a directory — a campus habit
           </h2>
+          <p className="mt-4 text-base leading-relaxed text-pine-200/85">
+            Students find their first customers here. Alumni stay connected
+            to campus. And the IIC gets a front-row seat to the ideas
+            worth backing.
+          </p>
         </div>
 
         <ol className="grid gap-5 md:grid-cols-3">

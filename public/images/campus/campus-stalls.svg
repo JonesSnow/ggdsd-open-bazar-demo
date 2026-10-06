@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Campus stalls scene">
+  <rect width="1200" height="900" fill="#F6F0E4"/>
+  <circle cx="1050" cy="160" r="260" fill="#C99B3E" opacity="0.12"/>
+  <circle cx="140" cy="760" r="240" fill="#2C6B4C" opacity="0.10"/>
+  <rect x="0" y="700" width="1200" height="200" fill="#DCEBE2"/>
+  <rect x="0" y="700" width="1200" height="10" fill="#8FBFA4" opacity="0.6"/>
+  
+    <path d="M80 700 L80 420 A 90 90 0 0 1 260 420 L260 700 Z" fill="#2C6B4C" opacity="0.9"/>
+    <path d="M80 480 A 90 90 0 0 1 260 480" fill="none" stroke="#C99B3E" stroke-width="7" opacity="0.8"/>
+    <rect x="118" y="560" width="104" height="140" rx="8" fill="#F5F1E8" opacity="0.92"/>
+    <rect x="118" y="560" width="104" height="26" rx="8" fill="#C99B3E" opacity="0.85"/>
+  
+    <path d="M340 700 L340 420 A 90 90 0 0 1 520 420 L520 700 Z" fill="#8A4B5C" opacity="0.9"/>
+    <path d="M340 480 A 90 90 0 0 1 520 480" fill="none" stroke="#D9B36A" stroke-width="7" opacity="0.8"/>
+    <rect x="378" y="560" width="104" height="140" rx="8" fill="#F5F1E8" opacity="0.92"/>
+    <rect x="378" y="560" width="104" height="26" rx="8" fill="#D9B36A" opacity="0.85"/>
+  
+    <path d="M600 700 L600 420 A 90 90 0 0 1 780 420 L780 700 Z" fill="#B8872A" opacity="0.9"/>
+    <path d="M600 480 A 90 90 0 0 1 780 480" fill="none" stroke="#8FBFA4" stroke-width="7" opacity="0.8"/>
+    <rect x="638" y="560" width="104" height="140" rx="8" fill="#F5F1E8" opacity="0.92"/>
+    <rect x="638" y="560" width="104" height="26" rx="8" fill="#8FBFA4" opacity="0.85"/>
+  
+    <path d="M860 700 L860 420 A 90 90 0 0 1 1040 420 L1040 700 Z" fill="#3E8562" opacity="0.9"/>
+    <path d="M860 480 A 90 90 0 0 1 1040 480" fill="none" stroke="#F4E8CE" stroke-width="7" opacity="0.8"/>
+    <rect x="898" y="560" width="104" height="140" rx="8" fill="#F5F1E8" opacity="0.92"/>
+    <rect x="898" y="560" width="104" height="26" rx="8" fill="#F4E8CE" opacity="0.85"/>
+  <path d="M120 260 Q 600 360 1080 260" stroke="#23563D" stroke-width="6" fill="none" opacity="0.5"/>
+  <path d="M240 260 L284 264 L247 338 Z" fill="#C99B3E" opacity="0.75"/>
+  <path d="M480 294.6410161513775 L524 298.6410161513775 L487 372.6410161513775 Z" fill="#8FBFA4" opacity="0.75"/>
+  <path d="M720 294.6410161513775 L764 298.6410161513775 L727 372.6410161513775 Z" fill="#8A4B5C" opacity="0.75"/>
+  <path d="M960 260 L1004 264 L967 338 Z" fill="#B8872A" opacity="0.75"/>
+  <circle cx="240" cy="180" r="22" fill="#C99B3E" opacity="0.35"/>
+  <circle cx="990" cy="140" r="18" fill="#2C6B4C" opacity="0.3"/>
+  <rect x="28" y="28" width="1144" height="844" rx="28" fill="none" stroke="#23563D" stroke-opacity="0.16" stroke-width="2"/>
+</svg>

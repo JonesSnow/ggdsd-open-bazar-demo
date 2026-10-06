@@ -3,6 +3,7 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/src/components/layout/site-header";
 import { SiteFooter } from "@/src/components/layout/site-footer";
+import { PageCurtain } from "@/src/components/layout/page-curtain";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
       "Discover student entrepreneurs, startups, alumni ventures and vendor stalls at GGDSD College.",
     images: [
       {
-        url: "/images/og-image.svg",
+        url: "/images/brand/og-image.svg",
         width: 1200,
         height: 630,
         alt: "GGDSD Open Bazar — Student Business Directory",
@@ -70,7 +71,10 @@ export const metadata: Metadata = {
     title: "GGDSD Open Bazar",
     description:
       "Discover student entrepreneurs, startups, alumni ventures and vendor stalls at GGDSD College.",
-    images: ["/images/og-image.svg"],
+    images: ["/images/brand/og-image.svg"],
+  },
+  icons: {
+    icon: "/images/brand/favicon.svg",
   },
   robots: {
     index: true,
@@ -105,8 +109,9 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <PageCurtain />
         <SiteHeader />
-        <main id="main-content" className="flex-1">
+        <main id="main-content" className="page-enter flex-1">
           {children}
         </main>
         <SiteFooter />

@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { Business } from "@/src/types";
-import { businessCoverArt } from "@/src/utils/images";
+import { businessCoverArt, heroArt } from "@/src/utils/images";
 import { categories, getCategoryById } from "@/src/data/categories";
 import { cn } from "@/src/utils/cn";
 import { ButtonLink } from "@/src/components/ui/button";
@@ -60,19 +60,35 @@ export function Hero({
         <div className="absolute -right-40 -top-40 h-[560px] w-[560px] rounded-full border-[36px] border-pine-100/70" />
         <div className="absolute -right-24 -top-24 h-[400px] w-[400px] rounded-full border-[24px] border-brass-100/60" />
         <div className="absolute -bottom-56 -left-56 h-[480px] w-[480px] rounded-full border-[32px] border-pine-100/50" />
+        {/* Editorial bazaar scene, softly washed behind the collage */}
+        <div className="absolute inset-y-0 right-0 hidden w-[58%] opacity-[0.35] [mask-image:linear-gradient(to_right,transparent,black_35%)] lg:block">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={heroArt()}
+            alt=""
+            width={1600}
+            height={1000}
+            loading="eager"
+            decoding="async"
+            className="h-full w-full object-cover"
+          />
+        </div>
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:px-8">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:px-8 xl:gap-14">
         {/* Copy + search */}
-        <div className="animate-fade-up">
-          <p className="inline-flex items-center gap-2 rounded-full border border-pine-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-pine-800 shadow-sm">
+        <div>
+          <p className="animate-fade-up inline-flex max-w-full items-center gap-2 rounded-full border border-pine-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-pine-800 shadow-sm">
             <LogoMark size={16} />
             A GGDSD College IIC initiative
-            <span className="h-3 w-px bg-pine-200" aria-hidden="true" />
+            <span className="hidden h-3 w-px bg-pine-200 sm:block" aria-hidden="true" />
             <span className="font-normal text-ink-500">Chandigarh</span>
           </p>
 
-          <h1 className="mt-6 font-display text-[2.75rem] font-medium leading-[1.06] tracking-heading text-ink-950 text-balance sm:text-6xl lg:text-[4.25rem]">
+          <h1
+            className="animate-fade-up mt-6 font-display text-[clamp(2.5rem,7.5vw,4.25rem)] font-medium leading-[1.05] tracking-heading text-ink-950 text-balance"
+            style={{ animationDelay: "80ms" }}
+          >
             Every stall on campus.{" "}
             <span className="relative inline-block text-pine-700">
               One directory.
@@ -94,7 +110,10 @@ export function Hero({
             </span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-600">
+          <p
+            className="animate-fade-up mt-6 max-w-xl text-base leading-relaxed text-ink-600 sm:text-lg"
+            style={{ animationDelay: "160ms" }}
+          >
             Open Bazar is the digital home of student entrepreneurs,
             alumni startups and independent campus stalls — discover
             what the community makes, sells and services.
@@ -105,7 +124,8 @@ export function Hero({
             onSubmit={handleSearch}
             role="search"
             aria-label="Search the business directory"
-            className="mt-8"
+            className="animate-fade-up mt-8"
+            style={{ animationDelay: "240ms" }}
           >
             <div className="relative max-w-xl">
               <Icon
@@ -119,13 +139,13 @@ export function Hero({
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Try “chai”, “calligraphy” or “web design”…"
                 aria-label="Search businesses, products and services"
-                className="h-14 w-full rounded-xl border border-ink-200 bg-white pl-12 pr-32 text-[15px] text-ink-900 shadow-soft transition-all placeholder:text-ink-400 hover:border-ink-300 focus:border-pine-500 focus:outline-none focus:ring-4 focus:ring-pine-500/10"
+                className="h-14 w-full rounded-xl border border-ink-200 bg-white pl-12 pr-24 text-[15px] text-ink-900 shadow-soft transition-all placeholder:text-ink-400 hover:border-ink-300 focus:border-pine-500 focus:outline-none focus:ring-4 focus:ring-pine-500/10 sm:pr-32"
               />
               <ButtonLink
                 href={`/directory${query.trim() ? `?q=${encodeURIComponent(query.trim())}` : ""}`}
                 variant="dark"
                 size="md"
-                className="absolute right-1.5 top-1/2 h-11 -translate-y-1/2 rounded-lg px-4"
+                className="absolute right-1.5 top-1/2 h-11 -translate-y-1/2 rounded-lg px-3.5 sm:px-4"
               >
                 Search
               </ButtonLink>
@@ -145,7 +165,10 @@ export function Hero({
           </form>
 
           {/* Trust strip */}
-          <dl className="mt-10 grid max-w-xl grid-cols-3 gap-6 border-t border-ink-100 pt-6">
+          <dl
+            className="animate-fade-up mt-10 grid max-w-xl grid-cols-3 gap-4 border-t border-ink-100 pt-6"
+            style={{ animationDelay: "320ms" }}
+          >
             {[
               { value: "19+", label: "Registered businesses" },
               { value: "10", label: "Categories" },
@@ -153,10 +176,10 @@ export function Hero({
             ].map((stat) => (
               <div key={stat.label}>
                 <dt className="sr-only">{stat.label}</dt>
-                <dd className="font-display text-2xl font-semibold text-ink-950 sm:text-3xl">
+                <dd className="font-display text-xl font-semibold text-ink-950 sm:text-2xl lg:text-3xl">
                   {stat.value}
                 </dd>
-                <dd className="mt-0.5 text-xs text-ink-500 sm:text-sm">
+                <dd className="mt-0.5 text-[11px] leading-snug text-ink-500 sm:text-xs">
                   {stat.label}
                 </dd>
               </div>
@@ -165,18 +188,19 @@ export function Hero({
         </div>
 
         {/* Collage */}
-        <div
-          ref={collage}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-          className="relative mx-auto w-full max-w-lg lg:max-w-none"
-          style={{
-            transform: prefersMotion
-              ? `perspective(1200px) rotateY(${tilt.x}deg) rotateX(${-tilt.y}deg)`
-              : undefined,
-            transition: "transform 200ms ease-out",
-          }}
-        >
+        <div className="animate-fade-up" style={{ animationDelay: "200ms" }}>
+          <div
+            ref={collage}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={() => setTilt({ x: 0, y: 0 })}
+            className="relative mx-auto w-full max-w-lg lg:max-w-none"
+            style={{
+              transform: prefersMotion
+                ? `perspective(1200px) rotateY(${tilt.x}deg) rotateX(${-tilt.y}deg)`
+                : undefined,
+              transition: "transform 200ms ease-out",
+            }}
+          >
           <div className="relative grid grid-cols-2 gap-4 sm:gap-5">
             {heroCards.map((business, index) => {
               const category = getCategoryById(business.categoryIds[0]);
@@ -241,14 +265,15 @@ export function Hero({
               since 2023
             </p>
           </div>
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-6 right-2 hidden animate-fade-in rounded-xl bg-ink-900 px-4 py-3 shadow-float sm:block"
-          >
-            <p className="flex items-center gap-1.5 text-xs font-semibold text-paper-100">
-              <Icon name="shield-check" size={14} className="text-brass-400" />
-              IIC verified listings
-            </p>
+           <div
+             aria-hidden="true"
+             className="absolute -bottom-6 right-2 hidden animate-fade-in rounded-xl bg-ink-900 px-4 py-3 shadow-float sm:block"
+           >
+             <p className="flex items-center gap-1.5 text-xs font-semibold text-paper-100">
+               <Icon name="shield-check" size={14} className="text-brass-400" />
+               IIC verified listings
+             </p>
+           </div>
           </div>
         </div>
       </div>
