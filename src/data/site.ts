@@ -33,6 +33,11 @@ export const navItems: NavItem[] = [
     description: "Student, alumni and IIC ventures",
   },
   {
+    label: "Bazar Stories",
+    href: "/stories",
+    description: "Sellers and visitors on the floor",
+  },
+  {
     label: "Become Sellers",
     href: "/register",
     description: "Join the bazar floor",
@@ -58,7 +63,7 @@ export const footerSections: FooterSection[] = [
     title: "Community",
     links: [
       { label: "Become a seller", href: "/register" },
-      { label: "Testimonials", href: "/testimonials" },
+      { label: "Bazar Stories", href: "/stories" },
       { label: "Community impact", href: "/about#impact" },
       { label: "Upcoming event", href: "/#event" },
     ],

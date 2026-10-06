@@ -258,7 +258,6 @@ function MobileNav({
           </p>
           <ul className="mt-2 space-y-1">
             {[
-              { label: "Testimonials", href: "/testimonials", icon: "message-circle" as IconName },
               { label: "Contact & enquiries", href: "/contact", icon: "mail" as IconName },
               { label: "Admin demo panel", href: "/admin", icon: "settings" as IconName },
             ].map((link) => (

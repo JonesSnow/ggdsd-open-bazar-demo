@@ -39,17 +39,17 @@ export function TestimonialCarousel({
 
   return (
     <section
-      aria-labelledby="testimonials-heading"
+      aria-labelledby="stories-heading"
       className="py-20 sm:py-24"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
       <Container>
         <SectionHeading
-          id="testimonials-heading"
-          eyebrow="Community voices"
-          title="What the campus says"
-          description="Students, alumni and faculty on the listings that became part of campus life."
+          id="stories-heading"
+          eyebrow="Bazar Stories"
+          title="Bazar Stories"
+          description="Hear from our amazing sellers and visitors."
         />
 
         <Reveal>
@@ -98,7 +98,7 @@ export function TestimonialCarousel({
                     (value) => (value - 1 + featured.length) % featured.length
                   )
                 }
-                aria-label="Previous testimonial"
+                aria-label="Previous story"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-200 bg-white text-ink-600 transition-colors hover:border-pine-400 hover:text-pine-700"
               >
                 <Icon name="chevron-left" size={17} />
@@ -106,7 +106,7 @@ export function TestimonialCarousel({
               <div
                 className="flex items-center gap-2"
                 role="tablist"
-                aria-label="Testimonial selector"
+                aria-label="Story selector"
               >
                 {featured.map((testimonial, dotIndex) => (
                   <button
@@ -114,7 +114,7 @@ export function TestimonialCarousel({
                     type="button"
                     role="tab"
                     aria-selected={dotIndex === activeIndex}
-                    aria-label={`Testimonial ${dotIndex + 1} from ${testimonial.authorName}`}
+                    aria-label={`Story ${dotIndex + 1} from ${testimonial.authorName}`}
                     onClick={() => setIndex(dotIndex)}
                     className={cn(
                       "h-2 rounded-full transition-all duration-300",
@@ -128,7 +128,7 @@ export function TestimonialCarousel({
               <button
                 type="button"
                 onClick={() => setIndex((value) => (value + 1) % featured.length)}
-                aria-label="Next testimonial"
+                aria-label="Next story"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-200 bg-white text-ink-600 transition-colors hover:border-pine-400 hover:text-pine-700"
               >
                 <Icon name="chevron-right" size={17} />
