@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="GGDSD Open Bazar">
+  <rect width="1200" height="630" fill="#0C1F17"/>
+  <circle cx="1020" cy="120" r="300" fill="#2C6B4C" opacity="0.35"/>
+  <circle cx="120" cy="560" r="260" fill="#C99B3E" opacity="0.18"/>
+  <g fill="none" stroke="#B9D7C6" stroke-opacity="0.25" stroke-width="2">
+    <path d="M60 0 h100"/>
+    <path d="M74 8 h100"/>
+    <path d="M88 16 h100"/>
+    <path d="M102 24 h100"/>
+    <path d="M116 32 h100"/>
+    <path d="M130 40 h100"/>
+    <path d="M144 48 h100"/>
+    <path d="M158 56 h100"/>
+    <path d="M172 64 h100"/>
+  </g>
+  <path d="M180 330 C 180 250 250 200 330 200 L 470 200 C 550 200 620 250 620 330 L 620 460 C 620 470 612 478 602 478 L 198 478 C 188 478 180 470 180 460 Z" fill="#F4E8CE"/>
+  <path d="M330 200 C 400 260 460 290 470 290 C 480 290 540 260 620 200" fill="none" stroke="#0C1F17" stroke-width="10"/>
+  <path d="M405 478 L405 340 A 55 55 0 0 1 515 340 L 515 478" fill="#C99B3E"/>
+  <text x="700" y="290" font-family="Georgia, 'Times New Roman', serif" font-size="96" fill="#FBFAF7">Open Bazar</text>
+  <text x="704" y="372" font-family="Arial, sans-serif" font-size="34" letter-spacing="6" fill="#DAB669">GGDSD COLLEGE · IIC</text>
+  <text x="704" y="436" font-family="Arial, sans-serif" font-size="26" fill="#8FBFA4">The campus business directory</text>
+</svg>

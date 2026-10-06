@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="health-fitness artwork">
+  <rect width="1200" height="900" fill="#EFF4F0"/>
+  
+    <circle cx="389" cy="260" r="149" fill="#5FA17E" opacity="0.12"/>
+    <circle cx="1048" cy="525" r="296" fill="#18382B" opacity="0.10"/>
+  <g>
+    <circle cx="1119" cy="287" r="2.0" fill="#8FBFA4" opacity="0.06"/>
+    <circle cx="1147" cy="805" r="2.2" fill="#8FBFA4" opacity="0.18"/>
+    <circle cx="650" cy="171" r="1.8" fill="#8FBFA4" opacity="0.18"/>
+    <circle cx="379" cy="235" r="2.9" fill="#8FBFA4" opacity="0.16"/>
+    <circle cx="49" cy="260" r="2.1" fill="#8FBFA4" opacity="0.08"/>
+    <circle cx="537" cy="489" r="2.0" fill="#8FBFA4" opacity="0.15"/>
+    <circle cx="590" cy="535" r="2.5" fill="#8FBFA4" opacity="0.09"/>
+    <circle cx="353" cy="637" r="2.1" fill="#8FBFA4" opacity="0.06"/>
+    <circle cx="1072" cy="540" r="1.4" fill="#8FBFA4" opacity="0.19"/>
+    <circle cx="870" cy="432" r="1.2" fill="#8FBFA4" opacity="0.17"/>
+    <circle cx="1035" cy="380" r="2.3" fill="#8FBFA4" opacity="0.12"/>
+    <circle cx="1137" cy="453" r="1.4" fill="#8FBFA4" opacity="0.17"/>
+    <circle cx="560" cy="439" r="1.0" fill="#8FBFA4" opacity="0.08"/>
+    <circle cx="632" cy="136" r="1.9" fill="#8FBFA4" opacity="0.13"/>
+    <circle cx="727" cy="834" r="1.9" fill="#8FBFA4" opacity="0.17"/>
+    <circle cx="862" cy="504" r="2.9" fill="#8FBFA4" opacity="0.17"/>
+    <circle cx="480" cy="445" r="1.5" fill="#8FBFA4" opacity="0.16"/>
+    <circle cx="667" cy="795" r="2.9" fill="#8FBFA4" opacity="0.06"/>
+    <circle cx="451" cy="471" r="2.2" fill="#8FBFA4" opacity="0.13"/>
+    <circle cx="276" cy="714" r="3.1" fill="#8FBFA4" opacity="0.18"/>
+    <circle cx="490" cy="241" r="2.2" fill="#8FBFA4" opacity="0.20"/>
+    <circle cx="134" cy="498" r="2.2" fill="#8FBFA4" opacity="0.14"/>
+    <circle cx="604" cy="398" r="2.5" fill="#8FBFA4" opacity="0.18"/>
+    <circle cx="377" cy="79" r="0.9" fill="#8FBFA4" opacity="0.13"/>
+    <circle cx="325" cy="550" r="2.8" fill="#8FBFA4" opacity="0.13"/>
+    <circle cx="412" cy="780" r="1.3" fill="#8FBFA4" opacity="0.06"/>
+  </g>
+  <g>
+    
+    <circle cx="600" cy="560" r="250" fill="#18382B" opacity="0.22"/>
+    <path d="M600 560 C 571.431271823483 722.0723594358406 678.6646329649038 283.8706972192411 722.2655565544292 620.0796564749596 Q 600 480 600 560 Z" fill="#23563D" opacity="0.5" transform="rotate(-70 600 560)"/>
+    <path d="M600 560 C 684.3384079585521 635.8865142628624 788.4049701864681 368.0774196392594 783.5717642971111 505.8266282962782 Q 600 480 600 560 Z" fill="#5FA17E" opacity="0.55" transform="rotate(-35 600 560)"/>
+    <path d="M600 560 C 766.7406867591708 522.2528271489384 830 500 778.480815441002 411.16788717077816 Q 600 480 600 560 Z" fill="#23563D" opacity="0.9" transform="rotate(0 600 560)"/>
+    <path d="M600 560 C 788.8335408912983 422.2721381229835 788.4049701864681 368.0774196392594 708.8340853726149 370.34111274390784 Q 600 480 600 560 Z" fill="#5FA17E" opacity="0.55" transform="rotate(35 600 560)"/>
+    <path d="M600 560 C 742.6260753437011 372.10705362684166 678.6646329649038 283.8706972192411 599.8225116015983 398.1131824024153 Q 600 480 600 560 Z" fill="#23563D" opacity="0.5" transform="rotate(70 600 560)"/>
+    <circle cx="600" cy="500" r="34" fill="#18382B"/>
+    <circle cx="350" cy="300" r="40" fill="#5FA17E" opacity="0.4"/>
+    <circle cx="860" cy="340" r="28" fill="#23563D" opacity="0.4"/>
+    <circle cx="880" cy="680" r="48" fill="#5FA17E" opacity="0.3"/>
+  </g>
+  <rect x="28" y="28" width="1144" height="844" rx="28" fill="none" stroke="#23563D" stroke-opacity="0.18" stroke-width="2"/>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="gifts-home-decor artwork">
+  <rect width="1200" height="900" fill="#F2EDE6"/>
+  
+    <circle cx="225" cy="180" r="208" fill="#7A561E" opacity="0.12"/>
+    <circle cx="711" cy="680" r="272" fill="#C99B3E" opacity="0.10"/>
+  <g>
+    <circle cx="561" cy="816" r="1.2" fill="#A8553F" opacity="0.14"/>
+    <circle cx="58" cy="387" r="1.4" fill="#A8553F" opacity="0.06"/>
+    <circle cx="977" cy="367" r="2.2" fill="#A8553F" opacity="0.19"/>
+    <circle cx="1042" cy="218" r="1.6" fill="#A8553F" opacity="0.21"/>
+    <circle cx="397" cy="808" r="2.4" fill="#A8553F" opacity="0.12"/>
+    <circle cx="236" cy="145" r="2.3" fill="#A8553F" opacity="0.18"/>
+    <circle cx="706" cy="501" r="2.9" fill="#A8553F" opacity="0.06"/>
+    <circle cx="848" cy="188" r="2.0" fill="#A8553F" opacity="0.19"/>
+    <circle cx="798" cy="288" r="3.2" fill="#A8553F" opacity="0.08"/>
+    <circle cx="247" cy="566" r="1.2" fill="#A8553F" opacity="0.18"/>
+    <circle cx="44" cy="689" r="2.4" fill="#A8553F" opacity="0.17"/>
+    <circle cx="982" cy="441" r="3.1" fill="#A8553F" opacity="0.09"/>
+    <circle cx="607" cy="844" r="3.0" fill="#A8553F" opacity="0.17"/>
+    <circle cx="307" cy="541" r="2.0" fill="#A8553F" opacity="0.06"/>
+    <circle cx="250" cy="679" r="1.8" fill="#A8553F" opacity="0.15"/>
+    <circle cx="427" cy="79" r="1.7" fill="#A8553F" opacity="0.21"/>
+    <circle cx="730" cy="64" r="2.6" fill="#A8553F" opacity="0.08"/>
+    <circle cx="537" cy="828" r="2.6" fill="#A8553F" opacity="0.14"/>
+    <circle cx="793" cy="23" r="1.7" fill="#A8553F" opacity="0.06"/>
+    <circle cx="465" cy="303" r="1.5" fill="#A8553F" opacity="0.17"/>
+    <circle cx="911" cy="192" r="2.6" fill="#A8553F" opacity="0.11"/>
+    <circle cx="172" cy="367" r="2.3" fill="#A8553F" opacity="0.05"/>
+    <circle cx="634" cy="508" r="2.3" fill="#A8553F" opacity="0.08"/>
+    <circle cx="558" cy="390" r="2.7" fill="#A8553F" opacity="0.18"/>
+    <circle cx="651" cy="22" r="2.8" fill="#A8553F" opacity="0.08"/>
+    <circle cx="961" cy="233" r="2.4" fill="#A8553F" opacity="0.12"/>
+  </g>
+  <g>
+    
+    <rect x="420" y="430" width="360" height="260" rx="18" fill="#5C401C" opacity="0.9"/>
+    <rect x="420" y="380" width="360" height="70" rx="18" fill="#C99B3E" opacity="0.85"/>
+    <rect x="566" y="380" width="68" height="310" fill="#7A561E" opacity="0.9"/>
+    <path d="M600 380 C 540 300 500 320 540 360 C 570 388 600 380 600 380 Z" fill="#7A561E"/>
+    <path d="M600 380 C 660 300 700 320 660 360 C 630 388 600 380 600 380 Z" fill="#7A561E"/>
+    <circle cx="600" cy="382" r="30" fill="#C99B3E"/>
+    <circle cx="330" cy="300" r="52" fill="#7A561E" opacity="0.4"/>
+    <circle cx="880" cy="700" r="64" fill="#5C401C" opacity="0.35"/>
+    <rect x="240" y="640" width="90" height="90" rx="14" fill="#C99B3E" opacity="0.3" transform="rotate(18 285 685)"/>
+  </g>
+  <rect x="28" y="28" width="1144" height="844" rx="28" fill="none" stroke="#5C401C" stroke-opacity="0.18" stroke-width="2"/>
+</svg>
