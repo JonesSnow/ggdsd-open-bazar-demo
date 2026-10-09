@@ -20,11 +20,13 @@ export function FilterPanel({
   onChange,
   onReset,
   activeCount,
+  categoryCounts,
 }: {
   filters: SearchFilters;
   onChange: (filters: SearchFilters) => void;
   onReset: () => void;
   activeCount: number;
+  categoryCounts: Record<string, number>;
 }) {
   const set = (patch: Partial<SearchFilters>) =>
     onChange({ ...filters, ...patch });
@@ -73,7 +75,7 @@ export function FilterPanel({
                 />
                 <span className="flex-1">{category.name}</span>
                 <span className="text-xs tabular-nums text-ink-400">
-                  {category.businessCount}
+                  {categoryCounts[category.id] ?? 0}
                 </span>
               </label>
             );
@@ -179,6 +181,12 @@ export function FilterPanel({
       {/* Toggles */}
       <div className="space-y-2 border-t border-paper-200 pt-5">
         <ToggleFilter
+          label="Featured only"
+          description="Listings highlighted in the demo directory"
+          checked={Boolean(filters.featuredOnly)}
+          onChange={(checked) => set({ featuredOnly: checked })}
+        />
+        <ToggleFilter
           label="Verified only"
           description="IIC-verified listings"
           checked={Boolean(filters.verifiedOnly)}
@@ -186,7 +194,7 @@ export function FilterPanel({
         />
         <ToggleFilter
           label="Open now"
-          description="Open at your local time"
+          description="Open at the campus location's local time"
           checked={Boolean(filters.openNow)}
           onChange={(checked) => set({ openNow: checked })}
         />

@@ -22,7 +22,6 @@ export interface Category {
   description: string;
   longDescription?: string;
   artSlug: string;
-  businessCount: number;
   featured: boolean;
   order: number;
 }
@@ -167,6 +166,7 @@ export interface SearchFilters {
   locationId?: string;
   verifiedOnly?: boolean;
   openNow?: boolean;
+  featuredOnly?: boolean;
 }
 
 export type SortKey = "name" | "rating" | "reviews" | "newest" | "oldest";

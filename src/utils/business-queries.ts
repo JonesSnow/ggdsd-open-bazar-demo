@@ -5,7 +5,8 @@ import { searchBusinesses } from "@/src/data/businesses";
 
 export function applyFilters(
   list: Business[],
-  filters: SearchFilters
+  filters: SearchFilters,
+  now?: Date
 ): Business[] {
   let result = list;
 
@@ -39,10 +40,14 @@ export function applyFilters(
     result = result.filter((business) => business.verified);
   }
 
+  if (filters.featuredOnly) {
+    result = result.filter((business) => business.featured);
+  }
+
   if (filters.openNow) {
     result = result.filter((business) => {
       const location = getLocationById(business.locationId);
-      return location ? getOpenStatus(location).open : false;
+      return location ? getOpenStatus(location, now).open : false;
     });
   }
 
@@ -75,6 +80,7 @@ export function countActiveFilters(filters: SearchFilters): number {
   if (filters.locationId) count += 1;
   if (filters.verifiedOnly) count += 1;
   if (filters.openNow) count += 1;
+  if (filters.featuredOnly) count += 1;
   return count;
 }
 

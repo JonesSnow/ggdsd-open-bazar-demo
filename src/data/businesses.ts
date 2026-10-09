@@ -1911,27 +1911,33 @@ export const businesses: Business[] = [
 ];
 
 export const getBusinessById = (id: string): Business | undefined =>
-  businesses.find((business) => business.id === id);
+  getPublicBusinesses().find((business) => business.id === id);
 
 export const getBusinessBySlug = (slug: string): Business | undefined =>
-  businesses.find((business) => business.slug === slug);
+  getPublicBusinesses().find((business) => business.slug === slug);
 
 export const getFeaturedBusinesses = (): Business[] =>
-  businesses.filter((business) => business.featured);
+  getPublicBusinesses().filter((business) => business.featured);
 
 export const getVerifiedBusinesses = (): Business[] =>
-  businesses.filter((business) => business.verified);
+  getPublicBusinesses().filter((business) => business.verified);
 
 export const getBusinessesByCategory = (categoryId: string): Business[] =>
-  businesses.filter((business) => business.categoryIds.includes(categoryId));
+  getPublicBusinesses().filter((business) => business.categoryIds.includes(categoryId));
 
 export const getBusinessesByType = (type: Business["type"]): Business[] =>
-  businesses.filter((business) => business.type === type);
+  getPublicBusinesses().filter((business) => business.type === type);
 
-export const getAllBusinesses = (): Business[] => businesses;
+/** Public listing state is the only state exposed by public routes. */
+export const getPublicBusinesses = (): Business[] =>
+  businesses.filter(
+    (business) => business.status === "active" || business.status === "featured"
+  );
+
+export const getAllBusinesses = (): Business[] => getPublicBusinesses();
 
 export const getRelatedBusinesses = (business: Business, limit = 4): Business[] =>
-  businesses
+  getPublicBusinesses()
     .filter(
       (other) =>
         other.id !== business.id &&
@@ -1942,7 +1948,7 @@ export const getRelatedBusinesses = (business: Business, limit = 4): Business[] 
 
 export const searchBusinesses = (
   query: string,
-  businessList: Business[] = businesses
+  businessList: Business[] = getPublicBusinesses()
 ): Business[] => {
   const terms = query
     .trim()

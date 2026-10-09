@@ -59,7 +59,7 @@ export function Panel({
   className?: string;
 }) {
   return (
-    <section className={cn("rounded-card bg-white shadow-soft ring-1 ring-paper-200", className)}>
+    <section className={cn("min-w-0 rounded-card bg-white shadow-soft ring-1 ring-paper-200", className)}>
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-paper-200 px-5 py-4">
         <div>
           <h2 className="font-display text-lg font-semibold text-ink-950">

@@ -1,18 +1,13 @@
-import Link from "next/link";
 import type { Business } from "@/src/types";
 import { BusinessCard } from "./business-card";
 import { Container, SectionHeading, Reveal } from "@/src/components/ui/section";
-import { Button } from "@/src/components/ui/button";
-import { getRelatedBusinesses } from "@/src/data/businesses";
+import { ButtonLink } from "@/src/components/ui/button";
 
 export function RelatedBusinesses({
-  business,
-  limit = 4,
+  related,
 }: {
-  business: Business;
-  limit?: number;
+  related: Business[];
 }) {
-  const related = getRelatedBusinesses(business, limit);
   if (related.length === 0) return null;
 
   return (
@@ -24,7 +19,7 @@ export function RelatedBusinesses({
           title="Similar listings"
           align="left"
           level={2}
-          action={{ label: "Browse the directory", href: "/directory" }}
+          action={{ label: "Browse the directory", href: "/explore-shops" }}
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {related.map((relatedBusiness, index) => (
@@ -34,9 +29,14 @@ export function RelatedBusinesses({
           ))}
         </div>
         <div className="mt-10 flex justify-center">
-          <Button variant="outline" icon="layout-grid" iconPosition="left">
-            <Link href="/directory">View all listings</Link>
-          </Button>
+          <ButtonLink
+            href="/explore-shops"
+            variant="outline"
+            icon="layout-grid"
+            iconPosition="left"
+          >
+            View all listings
+          </ButtonLink>
         </div>
       </Container>
     </section>

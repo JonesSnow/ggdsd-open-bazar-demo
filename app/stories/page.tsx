@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { Testimonial } from "@/src/types";
+import { marketplaceService } from "@/src/services/marketplace";
 import { testimonials } from "@/src/data/testimonials";
-import { getBusinessById } from "@/src/data/businesses";
 import { Avatar } from "@/src/components/ui/avatar";
 import { Badge } from "@/src/components/ui/badge";
 import { Rating } from "@/src/components/ui/rating";
@@ -13,7 +13,11 @@ export const metadata: Metadata = {
   description: "Stories from students, alumni and faculty about Open Bazar listings.",
 };
 
-export default function StoriesPage() {
+export default async function StoriesPage() {
+  const businesses = await marketplaceService.listPublicBusinesses();
+  const businessNames = Object.fromEntries(
+    businesses.map((business) => [business.id, business.name])
+  );
   const featured = testimonials.filter((testimonial) => testimonial.featured);
   const rest = testimonials.filter((testimonial) => !testimonial.featured);
 
@@ -64,17 +68,17 @@ export default function StoriesPage() {
           />
           <div className="grid gap-5 md:grid-cols-2">
             {rest.map((testimonial: Testimonial, index: number) => {
-              const business = testimonial.businessId
-                ? getBusinessById(testimonial.businessId)
+              const businessName = testimonial.businessId
+                ? businessNames[testimonial.businessId]
                 : undefined;
               return (
                 <Reveal key={testimonial.id} delay={(index % 2) * 80}>
                   <article className="flex h-full flex-col rounded-card border border-paper-200 bg-white p-6 shadow-soft">
                     <div className="flex items-center justify-between gap-3">
                       <Rating value={testimonial.rating} size={14} />
-                      {business && (
+                      {businessName && (
                         <Badge variant="pine" size="sm">
-                          {business.name}
+                          {businessName}
                         </Badge>
                       )}
                     </div>

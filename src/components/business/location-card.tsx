@@ -1,6 +1,6 @@
 import type { Location } from "@/src/types";
 import { formatTime } from "@/src/utils/format";
-import { getOpenStatus, summarizeHours } from "@/src/utils/hours";
+import { getCampusWeekday, getOpenStatus, summarizeHours } from "@/src/utils/hours";
 import { Badge } from "@/src/components/ui/badge";
 import { Card } from "@/src/components/ui/card";
 import { Icon } from "@/src/components/ui/icon";
@@ -18,9 +18,7 @@ const DAY_LABELS: Record<Location["hours"][number]["day"], string> = {
 
 export function HoursTable({ location }: { location: Location }) {
   const { open } = getOpenStatus(location);
-  const today = new Date().toLocaleDateString("en-US", {
-    weekday: "long",
-  }).toLowerCase() as keyof typeof DAY_LABELS;
+  const today = getCampusWeekday();
 
   return (
     <Card variant="outlined" className="overflow-hidden">
@@ -129,7 +127,6 @@ export function MiniMap({ location }: { location: Location }) {
         {/* stall marker */}
         <g transform="translate(320 200)">
           <circle r="34" fill="#2C6B4C" opacity="0.15">
-            <animate attributeName="r" values="28;40;28" dur="3s" repeatCount="indefinite" />
           </circle>
           <circle r="16" fill="#2C6B4C" />
           <circle r="6" fill="#F4E8CE" />

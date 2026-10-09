@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { Business } from "@/src/types";
-import { getCategoryBySlug, categories } from "@/src/data/categories";
-import { getBusinessesByCategory } from "@/src/data/businesses";
+import { marketplaceService } from "@/src/services/marketplace";
 import { artPath } from "@/src/utils/images";
 import { pluralize } from "@/src/utils/format";
 import { BusinessCard } from "@/src/components/business/business-card";
@@ -10,10 +9,17 @@ import { Container, Reveal, SectionHeading } from "@/src/components/ui/section";
 import { Icon } from "@/src/components/ui/icon";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Category",
-  description: "A category of businesses on GGDSD Open Bazar.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const category = await marketplaceService.getCategoryBySlug(slug);
+  return category
+    ? { title: category.name, description: category.description }
+    : { title: "Category not found" };
+}
 
 export default async function CategoryDetailPage({
   params,
@@ -21,13 +27,19 @@ export default async function CategoryDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const category = getCategoryBySlug(slug);
+  const [category, categories, publicBusinesses] = await Promise.all([
+    marketplaceService.getCategoryBySlug(slug),
+    marketplaceService.listCategories(),
+    marketplaceService.listPublicBusinesses(),
+  ]);
 
   if (!category) {
     notFound();
   }
 
-  const businesses = getBusinessesByCategory(category.id);
+  const businesses = publicBusinesses.filter((business) =>
+    business.categoryIds.includes(category.id)
+  );
   const siblings = categories
     .filter((item) => item.id !== category.id)
     .sort((a, b) => a.order - b.order);
@@ -76,7 +88,7 @@ export default async function CategoryDetailPage({
             </p>
             <p className="mt-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-paper-100 backdrop-blur-sm">
               <Icon name="store" size={15} className="text-brass-300" />
-              {pluralize(businesses.length || category.businessCount, "verified business")}
+              {pluralize(businesses.length, "public business")}
             </p>
           </Reveal>
         </Container>
@@ -89,12 +101,12 @@ export default async function CategoryDetailPage({
           title="Listings in this category"
           align="left"
           level={2}
-          action={{ label: "Browse the full directory", href: "/directory" }}
+          action={{ label: "Browse the full directory", href: "/explore-shops" }}
         />
         {businesses.length === 0 ? (
           <p className="rounded-card border border-dashed border-ink-200 bg-white px-8 py-14 text-center text-ink-500">
             No listings yet — check back soon, or browse the{" "}
-            <Link href="/directory" className="font-medium text-pine-700 hover:underline underline-offset-4">
+            <Link href="/explore-shops" className="font-medium text-pine-700 hover:underline underline-offset-4">
               full directory
             </Link>
             .

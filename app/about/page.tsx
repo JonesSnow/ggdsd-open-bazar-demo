@@ -78,7 +78,7 @@ export default function AboutPage() {
               <ButtonLink href="/register" variant="primary" size="lg" icon="plus">
                 Register your business
               </ButtonLink>
-              <ButtonLink href="/directory" variant="outline" size="lg" icon="store">
+              <ButtonLink href="/explore-shops" variant="outline" size="lg" icon="store">
                 Explore the directory
               </ButtonLink>
             </div>

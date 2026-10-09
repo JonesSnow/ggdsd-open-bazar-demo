@@ -4,12 +4,14 @@ import { getCategoryById } from "@/src/data/categories";
 import { getLocationById } from "@/src/data/locations";
 import { businessTypeLabels } from "@/src/data/site";
 import { businessCoverArt } from "@/src/utils/images";
-import { getOpenStatus } from "@/src/utils/hours";
 import { cn } from "@/src/utils/cn";
 import { Badge } from "@/src/components/ui/badge";
 import { Card } from "@/src/components/ui/card";
 import { Icon } from "@/src/components/ui/icon";
 import { RatingSummary } from "@/src/components/ui/rating";
+import { OpenStatus } from "./open-status";
+
+export { OpenStatus } from "./open-status";
 
 /** Business-type pill used across cards and profiles. */
 export function TypeBadge({
@@ -46,30 +48,6 @@ export function VerifiedBadge() {
   );
 }
 
-export function OpenStatus({ locationId, className }: { locationId: string; className?: string }) {
-  const location = getLocationById(locationId);
-  if (!location) return null;
-  const { open, label } = getOpenStatus(location);
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1.5 text-xs font-medium",
-        open ? "text-success-700" : "text-ink-500",
-        className
-      )}
-    >
-      <span
-        className={cn(
-          "h-1.5 w-1.5 rounded-full",
-          open ? "bg-success-500" : "bg-ink-300"
-        )}
-        aria-hidden="true"
-      />
-      {label}
-    </span>
-  );
-}
-
 /**
  * The standard directory card. Used on the home page,
  * directory, category pages and related listings.
@@ -87,7 +65,7 @@ export function BusinessCard({ business, priority = false }: { business: Busines
       className="group flex h-full flex-col overflow-hidden transition-shadow duration-200"
     >
       <Link
-        href={`/directory/${business.slug}`}
+        href={`/explore-shops/${business.slug}`}
         className="block overflow-hidden"
         aria-label={`View ${business.name}`}
         tabIndex={-1}
@@ -114,7 +92,7 @@ export function BusinessCard({ business, priority = false }: { business: Busines
 
         <h3 className="font-display text-xl font-semibold tracking-tight text-ink-950">
           <Link
-            href={`/directory/${business.slug}`}
+            href={`/explore-shops/${business.slug}`}
             className="transition-colors hover:text-pine-700"
           >
             {business.name}
@@ -167,7 +145,7 @@ export function BusinessRow({ business }: { business: Business }) {
   const location = getLocationById(business.locationId);
   return (
     <Link
-      href={`/directory/${business.slug}`}
+      href={`/explore-shops/${business.slug}`}
       className="group flex items-center gap-4 rounded-card border border-paper-200 bg-white p-4 transition-all duration-150 hover:border-pine-300 hover:shadow-soft"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}

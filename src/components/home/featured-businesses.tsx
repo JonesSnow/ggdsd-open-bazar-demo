@@ -20,7 +20,7 @@ export function FeaturedBusinesses({
           description="Hand-picked by the Startup Cell — businesses the community keeps coming back to."
           align="left"
           level={2}
-          action={{ label: "Browse the directory", href: "/directory", icon: "arrow-right" }}
+          action={{ label: "Browse the directory", href: "/explore-shops", icon: "arrow-right" }}
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featured.slice(0, 6).map((business, index) => (
@@ -30,7 +30,7 @@ export function FeaturedBusinesses({
           ))}
         </div>
         <div className="mt-12 flex justify-center">
-          <ButtonLink variant="outline" href="/directory" icon="store" iconPosition="left">
+          <ButtonLink variant="outline" href="/explore-shops" icon="store" iconPosition="left">
             Explore all {businesses.length} listings
           </ButtonLink>
         </div>

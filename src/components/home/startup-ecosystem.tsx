@@ -27,9 +27,9 @@ export function StartupEcosystem({ ventures }: { ventures: Business[] }) {
       <Container>
         <SectionHeading
           id="ecosystem"
-          eyebrow="The startup ecosystem"
-          title="Where ventures begin"
-          description="Open Bazar is the visible edge of the Startup Cell's pipeline — student entrepreneurs, founded startups, alumni ventures and IIC-associated businesses all share one floor."
+          eyebrow="Sample venture profiles"
+          title="Meet campus ventures"
+          description="Explore sample profiles showing how student ventures, alumni startups and campus businesses could be presented in one directory."
           align="center"
           level={2}
           action={{ label: "Explore startups", href: "/startups", icon: "arrow-right" }}
@@ -39,7 +39,7 @@ export function StartupEcosystem({ ventures }: { ventures: Business[] }) {
           {picks.map((business, index) => (
             <Reveal key={business.id} delay={index * 90}>
               <Link
-                href={`/directory/${business.slug}`}
+                href={`/explore-shops/${business.slug}`}
                 className="group flex h-full flex-col overflow-hidden rounded-card border border-paper-200 bg-white shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-pine-300 hover:shadow-lift"
               >
                 <div className="relative overflow-hidden">
@@ -98,8 +98,8 @@ export function StartupEcosystem({ ventures }: { ventures: Business[] }) {
                   Have a venture of your own?
                 </h3>
                 <p className="mt-1 max-w-xl text-sm leading-relaxed text-pine-200/85">
-                  The Startup Cell reviews registrations in 1–2 working days and
-                  mentors the strongest ideas toward the incubation center.
+                  Preview how a listing could introduce your venture. This demo
+                  validates the form locally and does not send or store details.
                 </p>
               </div>
             </div>
@@ -110,7 +110,7 @@ export function StartupEcosystem({ ventures }: { ventures: Business[] }) {
               icon="plus"
               className="shrink-0 bg-brass-500 text-brass-950 hover:bg-brass-400"
             >
-              Become a seller
+              Try the seller form demo
             </ButtonLink>
           </div>
         </Reveal>

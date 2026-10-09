@@ -20,17 +20,18 @@ export interface FieldProps {
 }
 
 function FieldShell({
+  id,
   label,
   hint,
   error,
   required,
   className,
   children,
-}: FieldProps & { children: ReactNode }) {
+}: FieldProps & { id: string; children: ReactNode }) {
   return (
     <div className={cn("space-y-1.5", className)}>
       {label && (
-        <label className="block text-sm font-medium text-ink-800">
+        <label htmlFor={id} className="block text-sm font-medium text-ink-800">
           {label}
           {required && (
             <span className="ml-0.5 text-error-600" aria-hidden="true">
@@ -41,11 +42,11 @@ function FieldShell({
       )}
       {children}
       {error ? (
-        <p className="text-xs text-error-600" role="alert">
+        <p id={`${id}-error`} className="text-xs text-error-600" role="alert">
           {error}
         </p>
       ) : hint ? (
-        <p className="text-xs text-ink-500">{hint}</p>
+        <p id={`${id}-hint`} className="text-xs text-ink-500">{hint}</p>
       ) : null}
     </div>
   );
@@ -71,6 +72,7 @@ export function TextField({
   const inputId = id ?? `field-${label?.replace(/\s+/g, "-").toLowerCase() ?? props.name ?? "input"}`;
   return (
     <FieldShell
+      id={inputId}
       label={label}
       hint={hint}
       error={error}
@@ -87,6 +89,7 @@ export function TextField({
         )}
         <input
           id={inputId}
+          required={required}
           className={cn(
             fieldBase,
             "h-11 px-4",
@@ -123,6 +126,7 @@ export function TextArea({
   const inputId = id ?? `field-${label?.replace(/\s+/g, "-").toLowerCase() ?? props.name ?? "textarea"}`;
   return (
     <FieldShell
+      id={inputId}
       label={label}
       hint={hint}
       error={error}
@@ -131,6 +135,7 @@ export function TextArea({
     >
       <textarea
         id={inputId}
+        required={required}
         className={cn(fieldBase, "px-4 py-3 resize-y", inputClassName)}
         aria-invalid={Boolean(error)}
         aria-describedby={
@@ -165,6 +170,7 @@ export function Select({
   const inputId = id ?? `field-${label?.replace(/\s+/g, "-").toLowerCase() ?? props.name ?? "select"}`;
   return (
     <FieldShell
+      id={inputId}
       label={label}
       hint={hint}
       error={error}
@@ -174,6 +180,7 @@ export function Select({
       <div className="relative">
         <select
           id={inputId}
+          required={required}
           className={cn(fieldBase, "h-11 appearance-none px-4 pr-10", inputClassName)}
           aria-invalid={Boolean(error)}
           aria-describedby={

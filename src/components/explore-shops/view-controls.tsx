@@ -30,7 +30,7 @@ export function SortSelect({
       <select
         value={value}
         onChange={(event) => onChange(event.target.value as SortKey)}
-        className="h-10 appearance-none rounded-lg border border-ink-200 bg-white pl-9 pr-9 text-sm font-medium text-ink-800 transition-colors hover:border-ink-300 focus:border-pine-500 focus:outline-none focus:ring-2 focus:ring-pine-500/20"
+        className="h-10 w-[164px] appearance-none rounded-lg border border-ink-200 bg-white pl-9 pr-9 text-sm font-medium text-ink-800 transition-colors hover:border-ink-300 focus:border-pine-500 focus:outline-none focus:ring-2 focus:ring-pine-500/20 sm:w-auto"
       >
         {SORT_OPTIONS.map((option) => (
           <option key={option.value} value={option.value}>
@@ -73,7 +73,7 @@ export function ViewToggle({
           aria-pressed={view === option.value}
           aria-label={option.label}
           className={cn(
-            "inline-flex h-8 w-9 items-center justify-center rounded-md transition-colors",
+            "inline-flex h-8 w-8 items-center justify-center rounded-md transition-colors sm:w-9",
             view === option.value
               ? "bg-pine-700 text-white shadow-sm"
               : "text-ink-500 hover:text-ink-800"

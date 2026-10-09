@@ -8,7 +8,7 @@ import { locations } from "@/src/data/locations";
 
 export const metadata: Metadata = {
   title: "Contact & Enquiries",
-  description: "Contact GGDSD Open Bazar, submit an enquiry, or find campus utilities.",
+  description: "View placeholder IIC contact information and preview the local enquiry form.",
 };
 
 export default function ContactPage() {
@@ -17,7 +17,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Talk to the bazar team"
-        description="Questions about listings, registrations or the IIC? Send an enquiry — a coordinator replies within two working days."
+        description="Questions about listings, registrations or the IIC? The enquiry form is a local demo; no message is sent or stored."
         className="border-b border-paper-200 bg-paper-100/60"
       />
 

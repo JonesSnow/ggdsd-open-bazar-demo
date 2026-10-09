@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { LogoMark } from "@/src/components/ui/logo";
-import { useMediaQuery } from "@/src/hooks";
+import { useMediaQuerySnapshot } from "@/src/hooks";
 
 const STORAGE_KEY = "openbazar:entered";
 const CURTAIN_MS = 950;
@@ -16,11 +16,12 @@ const CURTAIN_MS = 950;
  * (pointer-events: none).
  */
 export function PageCurtain() {
-  const prefersReduced = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const motionPreference = useMediaQuerySnapshot("(prefers-reduced-motion: reduce)");
+  const prefersReduced = motionPreference.matches;
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (prefersReduced) return;
+    if (!motionPreference.resolved || prefersReduced) return;
     try {
       if (window.sessionStorage.getItem(STORAGE_KEY)) return;
       window.sessionStorage.setItem(STORAGE_KEY, "1");
@@ -36,7 +37,7 @@ export function PageCurtain() {
       window.clearTimeout(show);
       window.clearTimeout(hide);
     };
-  }, [prefersReduced]);
+  }, [motionPreference.resolved, prefersReduced]);
 
   if (!visible) return null;
 

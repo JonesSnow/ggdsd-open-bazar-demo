@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteHeader } from "@/src/components/layout/site-header";
 import { SiteFooter } from "@/src/components/layout/site-footer";
 import { PageCurtain } from "@/src/components/layout/page-curtain";
+import { marketplaceService } from "@/src/services/marketplace";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,6 +21,25 @@ const fraunces = Fraunces({
   weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
 });
+
+function getConfiguredSiteUrl(): URL | undefined {
+  const value = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!value) return undefined;
+
+  try {
+    const url = new URL(value);
+    if (url.protocol === "https:" || url.hostname === "localhost") return url;
+  } catch {
+    return undefined;
+  }
+
+  return undefined;
+}
+
+const siteUrl = getConfiguredSiteUrl();
+const socialImage = siteUrl
+  ? new URL("/images/brand/og-image.svg", siteUrl).toString()
+  : undefined;
 
 export const metadata: Metadata = {
   title: {
@@ -48,40 +68,42 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://openbazar.ggdsd.ac.in"),
+  ...(siteUrl ? { metadataBase: siteUrl } : {}),
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "/",
+    url: siteUrl?.toString(),
     siteName: "GGDSD Open Bazar",
     title: "GGDSD Open Bazar — Student Business Directory",
     description:
       "Discover student entrepreneurs, startups, alumni ventures and vendor stalls at GGDSD College.",
-    images: [
-      {
-        url: "/images/brand/og-image.svg",
-        width: 1200,
-        height: 630,
-        alt: "GGDSD Open Bazar — Student Business Directory",
-      },
-    ],
+    images: socialImage
+      ? [
+          {
+            url: socialImage,
+            width: 1200,
+            height: 630,
+            alt: "GGDSD Open Bazar — Student Business Directory",
+          },
+        ]
+      : undefined,
   },
   twitter: {
     card: "summary_large_image",
     title: "GGDSD Open Bazar",
     description:
       "Discover student entrepreneurs, startups, alumni ventures and vendor stalls at GGDSD College.",
-    images: ["/images/brand/og-image.svg"],
+    images: socialImage ? [socialImage] : undefined,
   },
   icons: {
     icon: "/images/brand/favicon.svg",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: Boolean(siteUrl),
+    follow: Boolean(siteUrl),
     googleBot: {
-      index: true,
-      follow: true,
+      index: Boolean(siteUrl),
+      follow: Boolean(siteUrl),
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
@@ -95,11 +117,13 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const announcementItems = await marketplaceService.listAnnouncements();
+
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <body className="min-h-screen bg-paper-50 font-sans text-ink-900 antialiased">
@@ -110,7 +134,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <PageCurtain />
-        <SiteHeader />
+        <SiteHeader announcementItems={announcementItems} />
         <main id="main-content" className="page-enter flex-1">
           {children}
         </main>

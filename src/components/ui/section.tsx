@@ -77,7 +77,7 @@ export function SectionHeading({
       className={cn(
         "mb-10 sm:mb-14",
         align === "center" && "text-center",
-        align === "left" && action && "flex items-end justify-between gap-6",
+        align === "left" && action && "flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6",
         className
       )}
     >

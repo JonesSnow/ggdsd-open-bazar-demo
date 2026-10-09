@@ -2,27 +2,39 @@
 
 import { useEffect, useState } from "react";
 import type { Testimonial } from "@/src/types";
-import { getBusinessById } from "@/src/data/businesses";
 import { Avatar } from "@/src/components/ui/avatar";
 import { Badge } from "@/src/components/ui/badge";
 import { Rating } from "@/src/components/ui/rating";
 import { Icon } from "@/src/components/ui/icon";
 import { Container, Reveal, SectionHeading } from "@/src/components/ui/section";
 import { cn } from "@/src/utils/cn";
+import { useMediaQuerySnapshot } from "@/src/hooks";
 
 /**
  * Testimonial carousel with manual controls and auto-advance.
  */
 export function TestimonialCarousel({
   testimonials,
+  businessNames,
 }: {
   testimonials: Testimonial[];
+  businessNames: Record<string, string>;
 }) {
   const featured = testimonials.filter((testimonial) => testimonial.featured);
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const current = featured[index % featured.length];
-  const activeIndex = index % featured.length;
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
+  const motionPreference = useMediaQuerySnapshot("(prefers-reduced-motion: reduce)");
+  const prefersReducedMotion = motionPreference.matches;
+  const paused =
+    hovered ||
+    focused ||
+    userPaused ||
+    !motionPreference.resolved ||
+    prefersReducedMotion;
+  const current = featured.length ? featured[index % featured.length] : undefined;
+  const activeIndex = featured.length ? index % featured.length : 0;
 
   useEffect(() => {
     if (paused || featured.length < 2) return;
@@ -33,29 +45,38 @@ export function TestimonialCarousel({
     return () => window.clearInterval(timer);
   }, [paused, featured.length]);
 
-  const business = current.businessId
-    ? getBusinessById(current.businessId)
+  const businessName = current?.businessId
+    ? businessNames[current.businessId]
     : undefined;
+
+  if (!current) return null;
 
   return (
     <section
       aria-labelledby="stories-heading"
       className="py-20 sm:py-24"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setFocused(true)}
+      onBlur={(event) => {
+        const nextTarget = event.relatedTarget;
+        if (!(nextTarget instanceof Node) || !event.currentTarget.contains(nextTarget)) {
+          setFocused(false);
+        }
+      }}
     >
       <Container>
         <SectionHeading
           id="stories-heading"
-          eyebrow="Bazar Stories"
+          eyebrow="Sample stories · demo content"
           title="Bazar Stories"
-          description="Hear from our amazing sellers and visitors."
+          description="Illustrative quotes for this prototype — these are not real seller or visitor testimonials."
         />
 
         <Reveal>
           <div className="relative mx-auto max-w-4xl">
             <div
-              aria-live="polite"
+              aria-live={paused ? "polite" : "off"}
               className="relative overflow-hidden rounded-card bg-white p-8 shadow-soft ring-1 ring-paper-200 sm:p-12"
             >
               <Icon
@@ -80,9 +101,9 @@ export function TestimonialCarousel({
                       {current.authorBatch && ` · Batch of ${current.authorBatch}`}
                     </p>
                   </div>
-                  {business && (
+                  {businessName && (
                     <Badge variant="pine" className="ml-auto">
-                      {business.name}
+                      {businessName}
                     </Badge>
                   )}
                 </figcaption>
@@ -90,7 +111,7 @@ export function TestimonialCarousel({
             </div>
 
             {/* Controls */}
-            <div className="mt-6 flex items-center justify-center gap-3">
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <button
                 type="button"
                 onClick={() =>
@@ -105,15 +126,14 @@ export function TestimonialCarousel({
               </button>
               <div
                 className="flex items-center gap-2"
-                role="tablist"
-                aria-label="Story selector"
+                role="group"
+                aria-label="Choose a story"
               >
                 {featured.map((testimonial, dotIndex) => (
                   <button
                     key={testimonial.id}
                     type="button"
-                    role="tab"
-                    aria-selected={dotIndex === activeIndex}
+                    aria-pressed={dotIndex === activeIndex}
                     aria-label={`Story ${dotIndex + 1} from ${testimonial.authorName}`}
                     onClick={() => setIndex(dotIndex)}
                     className={cn(
@@ -125,6 +145,15 @@ export function TestimonialCarousel({
                   />
                 ))}
               </div>
+              <button
+                type="button"
+                onClick={() => setUserPaused((value) => !value)}
+                aria-pressed={userPaused}
+                disabled={prefersReducedMotion}
+                className="inline-flex h-10 items-center justify-center rounded-full border border-ink-200 bg-white px-3 text-xs font-semibold text-ink-600 transition-colors hover:border-pine-400 hover:text-pine-700 disabled:cursor-default disabled:opacity-70"
+              >
+                {prefersReducedMotion ? "Motion off" : userPaused ? "Play stories" : "Pause stories"}
+              </button>
               <button
                 type="button"
                 onClick={() => setIndex((value) => (value + 1) % featured.length)}

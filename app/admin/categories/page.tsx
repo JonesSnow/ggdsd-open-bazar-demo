@@ -56,7 +56,6 @@ export default function AdminCategoriesPage() {
         slug: `new-category-${current.length + 1}`,
         description: "Describe this category…",
         artSlug: "design",
-        businessCount: 0,
         featured: false,
         order: current.length + 1,
         active: true,

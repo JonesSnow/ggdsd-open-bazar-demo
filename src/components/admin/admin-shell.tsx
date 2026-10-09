@@ -1,50 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Icon } from "@/src/components/ui/icon";
 import { AdminNav, AdminDemoNotice } from "./admin-nav";
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
-
   return (
     <div className="min-h-screen">
-      <AdminNav mobileOpen={mobileOpen} onNavigate={() => setMobileOpen(false)} />
+      <AdminNav />
 
       <div className="lg:pl-64">
         {/* Top bar */}
         <div className="sticky top-0 z-dropdown border-b border-paper-200 bg-paper-50/90 backdrop-blur-md">
-          <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() => setMobileOpen(true)}
-                aria-label="Open admin menu"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-ink-700 transition-colors hover:bg-paper-100 lg:hidden"
-              >
-                <Icon name="menu" size={20} />
-              </button>
-              <nav aria-label="Breadcrumb" className="hidden items-center gap-1.5 text-sm text-ink-500 sm:flex">
-                <Link href="/admin" className="hover:text-pine-700 hover:underline underline-offset-4">
-                  Admin
-                </Link>
-                <Icon name="chevron-right" size={13} className="text-ink-300" />
-                <span className="font-medium text-ink-800">
-                  Demo workspace
-                </span>
-              </nav>
-            </div>
-            <div className="flex items-center gap-3">
+          <div className="mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:h-16 sm:flex-nowrap sm:gap-4 sm:px-6 sm:py-0 lg:px-8">
+            <nav aria-label="Breadcrumb" className="flex shrink-0 items-center gap-1.5 text-sm text-ink-500">
+              <Link href="/admin" className="hover:text-pine-700 hover:underline underline-offset-4">
+                Admin
+              </Link>
+              <Icon name="chevron-right" size={13} className="text-ink-300" />
+              <span className="font-medium text-ink-800">
+                Demo workspace
+              </span>
+            </nav>
+            <div className="ml-auto flex min-w-0 flex-wrap items-center justify-end gap-3">
               <AdminDemoNotice />
-              <span className="hidden items-center gap-2 rounded-full bg-paper-100 px-3 py-1.5 text-xs font-medium text-ink-600 sm:inline-flex">
+              <span className="hidden items-center gap-2 rounded-full bg-paper-100 px-3 py-1.5 text-xs font-medium text-ink-600 sm:flex">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-pine-500 opacity-60" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-pine-600" />

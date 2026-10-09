@@ -1,92 +1,75 @@
-import { businesses, getFeaturedBusinesses } from "@/src/data/businesses";
-import { categories } from "@/src/data/categories";
+import { marketplaceService } from "@/src/services/marketplace";
 import { testimonials } from "@/src/data/testimonials";
-import { announcements } from "@/src/data/site";
 import { Hero } from "@/src/components/home/hero";
 import { CategoryShowcase } from "@/src/components/home/category-showcase";
-import { FeaturedBusinesses } from "@/src/components/home/featured-businesses";
 import { StartupEcosystem } from "@/src/components/home/startup-ecosystem";
 import { EventSection } from "@/src/components/home/event-section";
-import { HowItWorks, StatsBand } from "@/src/components/home/how-it-works";
+import { HowItWorks } from "@/src/components/home/how-it-works";
 import { TestimonialCarousel } from "@/src/components/home/testimonials";
-import { CtaBanner, Ticker } from "@/src/components/home/cta-banner";
-import { Icon } from "@/src/components/ui/icon";
+import { CtaBanner } from "@/src/components/home/cta-banner";
+import { serializeJsonLd } from "@/src/utils/json-ld";
 
-const STATS = [
-  {
-    value: "19",
-    suffix: "+",
-    label: "Registered businesses",
-    icon: <Icon name="store" size={20} />,
-  },
-  {
-    value: "10",
-    suffix: "",
-    label: "Active categories",
-    icon: <Icon name="layout-grid" size={20} />,
-  },
-  {
-    value: "6",
-    suffix: "",
-    label: "Campus locations",
-    icon: <Icon name="map-pin" size={20} />,
-  },
-  {
-    value: "4.8",
-    suffix: "/5",
-    label: "Average rating",
-    icon: <Icon name="star" size={20} />,
-  },
-];
-
-/**
- * Homepage flow:
- * 1. Hero / Open Bazar introduction
- * 2. Announcements ticker
- * 3. Explore shops (categories)
- * 4. Featured businesses
- * 5. Startup ecosystem
- * 6. Why Open Bazar
- * 7. Community impact numbers
- * 8. Upcoming Open Bazaar event
- * 9. Student & community experiences
- * 10. Become a seller CTA
- */
-export default function HomePage() {
-  const featured = getFeaturedBusinesses();
-  const heroBusinesses = featured.slice(0, 3);
+export default async function HomePage() {
+  const [publicBusinesses, categories] = await Promise.all([
+    marketplaceService.listPublicBusinesses(),
+    marketplaceService.listCategories(),
+  ]);
+  const categoryCounts = Object.fromEntries(
+    categories.map((category) => [
+      category.id,
+      publicBusinesses.filter((business) =>
+        business.categoryIds.includes(category.id)
+      ).length,
+    ])
+  );
 
   return (
     <>
-      <Hero featured={heroBusinesses} />
-      <Ticker items={announcements} />
-      <CategoryShowcase categories={categories} />
-      <FeaturedBusinesses businesses={businesses} />
-      <StartupEcosystem ventures={businesses} />
+      <Hero businesses={publicBusinesses} />
+      <CategoryShowcase categories={categories} categoryCounts={categoryCounts} />
+      <StartupEcosystem ventures={publicBusinesses} />
       <HowItWorks />
-      <StatsBand stats={STATS} />
       <EventSection />
-      <TestimonialCarousel testimonials={testimonials} />
+      <TestimonialCarousel
+        testimonials={testimonials}
+        businessNames={Object.fromEntries(
+          publicBusinesses.map((business) => [business.id, business.name])
+        )}
+      />
       <CtaBanner />
       <JsonLd />
     </>
   );
 }
 
-/** Structured data for search engines. */
+/** Structured data is emitted only when an approved public origin is configured. */
 function JsonLd() {
+  const configuredOrigin = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!configuredOrigin) return null;
+
+  let siteUrl: URL;
+  try {
+    siteUrl = new URL(configuredOrigin);
+    if (siteUrl.protocol !== "https:" && siteUrl.hostname !== "localhost") {
+      return null;
+    }
+  } catch {
+    return null;
+  }
+
   const data = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "GGDSD Open Bazar",
     description:
       "Student business directory of GGDSD College, Chandigarh, run by the Institutions' Innovation Council.",
-    url: "https://openbazar.ggdsd.ac.in",
+    url: siteUrl.toString(),
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://openbazar.ggdsd.ac.in/directory?q={search_term_string}",
+        urlTemplate:
+          new URL("/explore-shops?q={search_term_string}", siteUrl).toString(),
       },
       "query-input": "required name=search_term_string",
     },
@@ -95,7 +78,9 @@ function JsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{
+        __html: serializeJsonLd(data),
+      }}
     />
   );
 }

@@ -9,7 +9,6 @@ export const categories: Category[] = [
     longDescription:
       "From hand-block printed scarves to restyled denim and studio jewellery, this corner of the bazar is run by student designers who sketch, draft and stitch between lectures. Every piece is made in small batches on campus.",
     artSlug: "fashion-accessories",
-    businessCount: 14,
     featured: true,
     order: 1,
   },
@@ -21,7 +20,6 @@ export const categories: Category[] = [
     longDescription:
       "The aroma section of the bazar. Student-run chai carts, sourdough bakers, homemade sauce makers and tiffin services — everything here is cooked, brewed or baked by hand, usually the same morning you buy it.",
     artSlug: "food-beverages",
-    businessCount: 17,
     featured: true,
     order: 2,
   },
@@ -33,7 +31,6 @@ export const categories: Category[] = [
     longDescription:
       "Thoughtful objects for rooms and people. Curated gift boxes, hand-poured candles, macramé planters and paper crafts — ideal for birthdays, festivals, or making your dorm feel slightly less like a dorm.",
     artSlug: "gifts-home-decor",
-    businessCount: 9,
     featured: true,
     order: 3,
   },
@@ -45,7 +42,6 @@ export const categories: Category[] = [
     longDescription:
       "Gentle, honest products made in tiny batches. Cold-process soaps, botanical face oils and balms formulated by students who read the ingredient lists so you don't have to. Most recipes started as chemistry projects.",
     artSlug: "personal-care-skincare",
-    businessCount: 11,
     featured: true,
     order: 4,
   },
@@ -57,7 +53,6 @@ export const categories: Category[] = [
     longDescription:
       "Paper, ink and patience. Hand-lettered calligraphy commissions, riso-style art prints, stitched planners and custom illustrations — much of it produced in the fine arts studio between classes.",
     artSlug: "stationery-art",
-    businessCount: 10,
     featured: false,
     order: 5,
   },
@@ -69,7 +64,6 @@ export const categories: Category[] = [
     longDescription:
       "The fix-it and build-it counter. Alumni-run repair stalls, custom PC builds, student web studios and digital services — from portfolio sites to automation scripts, priced for a student budget.",
     artSlug: "technology",
-    businessCount: 7,
     featured: false,
     order: 6,
   },
@@ -81,7 +75,6 @@ export const categories: Category[] = [
     longDescription:
       "Campus stories, framed. Student photographers and editors offering event coverage, portrait sessions, reel edits and content packages for societies, fests and personal portfolios.",
     artSlug: "photography-videography",
-    businessCount: 6,
     featured: false,
     order: 7,
   },
@@ -93,7 +86,6 @@ export const categories: Category[] = [
     longDescription:
       "Movement and recovery on campus. Certified student trainers and yoga instructors offering small-group sessions, personal training and practical nutrition guidance — booked by the pack or the semester.",
     artSlug: "health-fitness",
-    businessCount: 5,
     featured: false,
     order: 8,
   },
@@ -105,7 +97,6 @@ export const categories: Category[] = [
     longDescription:
       "Learn from the person who just aced the course. Peer tutoring across core subjects, weekend skill workshops and language conversation circles — structured, affordable and run by students who've been there.",
     artSlug: "education-tutoring",
-    businessCount: 8,
     featured: false,
     order: 9,
   },
@@ -117,7 +108,6 @@ export const categories: Category[] = [
     longDescription:
       "Make it memorable. Student crews offering decoration, sound, lighting and full planning for society events, farewells, birthdays and cultural nights — priced for campus budgets, built for campus crowds.",
     artSlug: "event-services",
-    businessCount: 4,
     featured: false,
     order: 10,
   },

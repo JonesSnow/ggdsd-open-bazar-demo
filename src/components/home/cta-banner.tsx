@@ -1,9 +1,8 @@
-import Link from "next/link";
 import { Icon } from "@/src/components/ui/icon";
 import { ButtonLink } from "@/src/components/ui/button";
 import { Container, Reveal } from "@/src/components/ui/section";
 
-/** Full-width CTA band: register your business. */
+/** Full-width invitation to explore the local-only seller form demo. */
 export function CtaBanner() {
   return (
     <section aria-labelledby="cta-heading" className="py-20 sm:py-24">
@@ -25,12 +24,12 @@ export function CtaBanner() {
                 id="cta-heading"
                 className="mt-6 font-display text-3xl font-medium tracking-heading text-paper-50 text-balance sm:text-4xl lg:text-5xl"
               >
-                Run something from your dorm room?
+                Have a venture to share?
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-pine-200">
-                Join the directory in minutes. Student entrepreneurs, alumni
-                ventures and independent stalls are all welcome — the IIC
-                reviews every listing before it goes live.
+                See how a campus listing could introduce a student venture,
+                alumni business or independent stall. The form is a local demo;
+                no application is sent or stored.
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <ButtonLink
@@ -40,15 +39,15 @@ export function CtaBanner() {
                   className="bg-brass-500 text-brass-950 hover:bg-brass-400"
                   icon="plus"
                 >
-                  Register your business
+                  Try the seller form demo
                 </ButtonLink>
                 <ButtonLink
-                  href="/about"
+                  href="/explore-shops"
                   variant="outline"
                   size="lg"
                   className="border-pine-700 bg-transparent text-paper-100 hover:border-pine-500 hover:bg-pine-900"
                 >
-                  How listing works
+                  Explore sample listings
                 </ButtonLink>
               </div>
               <p className="mt-6 text-xs text-pine-400">
@@ -59,36 +58,5 @@ export function CtaBanner() {
         </Reveal>
       </Container>
     </section>
-  );
-}
-
-/** Marquee ticker of announcements. */
-export function Ticker({
-  items,
-}: {
-  items: { id: string; text: string; href?: string }[];
-}) {
-  const doubled = [...items, ...items];
-  return (
-    <div className="overflow-hidden border-b border-paper-200 bg-white py-3" aria-label="Announcements">
-      <div className="marquee-track">
-        {doubled.map((item, index) => (
-          <span
-            key={`${item.id}-${index}`}
-            className="mx-8 inline-flex items-center gap-2.5 whitespace-nowrap text-sm text-ink-600"
-            aria-hidden={index >= items.length}
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-brass-500" aria-hidden="true" />
-            {item.href ? (
-              <Link href={item.href} className="font-medium transition-colors hover:text-pine-700 hover:underline underline-offset-4">
-                {item.text}
-              </Link>
-            ) : (
-              item.text
-            )}
-          </span>
-        ))}
-      </div>
-    </div>
   );
 }

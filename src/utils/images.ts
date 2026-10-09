@@ -1,4 +1,5 @@
 import type { Business, Category } from "@/src/types";
+import { getCategoryById } from "@/src/data/categories";
 
 /**
  * Artwork lives under /public/images in a self-contained,
@@ -10,27 +11,27 @@ import type { Business, Category } from "@/src/types";
 export const artPath = (slug: string, variant: number): string =>
   `/images/vendors/${slug}-${variant % 6}.svg`;
 
+const businessArtSlug = (business: Business): string => {
+  const [primaryCategoryId] = business.categoryIds;
+  return getCategoryById(primaryCategoryId ?? "")?.artSlug ?? "technology";
+};
+
 export const categoryArt = (category: Category, variant = 0): string =>
   artPath(category.artSlug, variant);
 
 export const businessCoverArt = (business: Business): string => {
-  const [primaryCategoryId] = business.categoryIds;
-  const slug = primaryCategoryId?.replace("cat-", "") ?? "technology";
-  return artPath(slug, business.artVariant);
+  return artPath(businessArtSlug(business), business.artVariant);
 };
 
 export const businessGalleryArt = (business: Business): string[] => {
-  const [primaryCategoryId] = business.categoryIds;
-  const slug = primaryCategoryId?.replace("cat-", "") ?? "technology";
+  const slug = businessArtSlug(business);
   return [1, 2, 3].map((offset) =>
     artPath(slug, business.artVariant + offset)
   );
 };
 
 export const productArt = (business: Business, productIndex: number): string => {
-  const [primaryCategoryId] = business.categoryIds;
-  const slug = primaryCategoryId?.replace("cat-", "") ?? "technology";
-  return artPath(slug, business.artVariant + productIndex + 1);
+  return artPath(businessArtSlug(business), business.artVariant + productIndex + 1);
 };
 
 /** Category tiles — the canonical composition per category. */

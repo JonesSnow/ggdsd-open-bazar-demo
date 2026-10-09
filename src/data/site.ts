@@ -12,7 +12,6 @@ export const siteConfig = {
   cell: "Startup Cell",
   demoNotice:
     "Frontend demonstration prototype. All listings, people, events and contacts are fictional placeholder data.",
-  domain: "openbazar.ggdsd.ac.in",
 };
 
 /** Primary navigation — the public-facing IA. */
@@ -24,7 +23,7 @@ export const navItems: NavItem[] = [
   },
   {
     label: "Explore Shops",
-    href: "/directory",
+    href: "/explore-shops",
     description: "Every registered stall and venture",
   },
   {
@@ -38,7 +37,7 @@ export const navItems: NavItem[] = [
     description: "Sellers and visitors on the floor",
   },
   {
-    label: "Become Sellers",
+    label: "Seller form demo",
     href: "/register",
     description: "Join the bazar floor",
   },
@@ -53,16 +52,16 @@ export const footerSections: FooterSection[] = [
   {
     title: "Explore",
     links: [
-      { label: "Explore shops", href: "/directory" },
+      { label: "Explore shops", href: "/explore-shops" },
       { label: "Startups", href: "/startups" },
       { label: "Categories", href: "/categories" },
-      { label: "Featured listings", href: "/directory?featured=1" },
+      { label: "Featured listings", href: "/explore-shops?featured=1" },
     ],
   },
   {
     title: "Community",
     links: [
-      { label: "Become a seller", href: "/register" },
+      { label: "Seller form demo", href: "/register" },
       { label: "Bazar Stories", href: "/stories" },
       { label: "Community impact", href: "/about#impact" },
       { label: "Upcoming event", href: "/#event" },
@@ -79,19 +78,25 @@ export const footerSections: FooterSection[] = [
   },
 ];
 
+/**
+ * Demo-only announcements kept outside the ticker UI. Once backed by an API,
+ * the public reader should return ordered active entries; authenticated admin
+ * mutations can then create, edit, reorder, activate, and deactivate them.
+ */
 export const announcements: Announcement[] = [
   {
     id: "ann-1",
-    text: "Open Bazaar 5.0 — the annual campus edition is coming to the main lawn",
+    text: "Open Bazaar 5.0 — event details to be announced",
     href: "/#event",
   },
   {
     id: "ann-2",
-    text: "New: peer tutoring listings now show verified department vetting",
+    text: "Browse sample student ventures",
+    href: "/explore-shops",
   },
   {
     id: "ann-3",
-    text: "IIC incubation center now accepting early-stage ideas",
+    text: "Learn about GGDSD College IIC",
     href: "/about#iic",
   },
 ];
@@ -106,20 +111,13 @@ export const announcements: Announcement[] = [
 export const upcomingEvent = {
   id: "open-bazaar-5",
   edition: "Open Bazaar 5.0",
-  tagline: "The annual campus edition",
+  tagline: "Campus event details to be announced",
   dateLabel: "Date to be announced",
-  venue: "Main Lawn · GGDSD College, Chandigarh",
+  venue: "Location to be announced",
   description:
-    "One lawn, a hundred stalls. Open Bazaar 5.0 gathers every student venture, alumni startup and independent campus vendor for a full day of demos, live making, tasting counters and pitch corners — the largest student-run marketplace at GGDSD.",
-  highlights: [
-    "100+ student and alumni stalls across all ten categories",
-    "Live product demos and make-it-yourself counters",
-    "Pitch corner hosted by the Institutions' Innovation Council",
-    "Food court featuring campus chefs and tiffin services",
-    "Networking hour for founders, mentors and buyers",
-  ],
-  ctaPrimary: { label: "Register a stall", href: "/register" },
-  ctaSecondary: { label: "Meet the IIC", href: "/about#iic" },
+    "Open Bazaar is designed as a place to explore campus ventures, browse stalls and discover student-made products and services. The date, location and programme will be shared once confirmed.",
+  ctaPrimary: { label: "Browse sample stalls", href: "/explore-shops" },
+  ctaSecondary: { label: "About the IIC", href: "/about#iic" },
 } as const;
 
 export const businessTypeLabels = {

@@ -73,6 +73,27 @@ interface FormErrors {
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[+\d][\d\s-]{7,17}$/;
 
+function isValidWebsite(value: string): boolean {
+  const input = value.trim();
+  if (!input || /\s/.test(input)) return false;
+
+  const normalized = /^[a-z][a-z\d+.-]*:\/\//i.test(input)
+    ? input
+    : `https://${input}`;
+
+  try {
+    const url = new URL(normalized);
+    return (
+      (url.protocol === "http:" || url.protocol === "https:") &&
+      url.hostname.includes(".") &&
+      !url.username &&
+      !url.password
+    );
+  } catch {
+    return false;
+  }
+}
+
 function validate(state: FormState): FormErrors {
   const errors: FormErrors = {};
   if (state.businessName.trim().length < 3) {
@@ -103,7 +124,7 @@ function validate(state: FormState): FormErrors {
   }
   if (
     state.website.trim() &&
-    !/^(https?:\/\/)?[\w-]+(\.[\w-]+)+/.test(state.website)
+    !isValidWebsite(state.website)
   ) {
     errors.website = "Enter a valid URL, e.g. https://yourstudio.com.";
   }
@@ -171,8 +192,8 @@ export default function RegisterPage() {
       <>
         <PageHeader
           eyebrow="Registration"
-          title="Application received"
-          description="Your listing request has been recorded for review."
+          title="Demo preview complete"
+          description="Your details passed local validation. No listing request was stored or sent."
           className="border-b border-paper-200 bg-paper-100/60"
         />
         <Container className="py-16">
@@ -186,7 +207,7 @@ export default function RegisterPage() {
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-ink-600">
                 <strong className="text-ink-900">{state.businessName}</strong>{" "}
-                is queued for IIC review. Your demo reference number is{" "}
+                was not submitted for IIC review. Demo reference:{" "}
                 <span className="rounded bg-paper-100 px-2 py-0.5 font-mono text-xs font-semibold text-pine-800">
                   {submitted}
                 </span>
@@ -195,21 +216,21 @@ export default function RegisterPage() {
               <div className="mt-6 space-y-2 rounded-xl bg-paper-100/70 p-4 text-left text-xs text-ink-500">
                 <p className="flex items-center gap-2">
                   <Icon name="clock" size={14} className="text-pine-600" />
-                  Review typically takes 1–2 working days on the live platform.
+                  A live platform would typically review listings within 1–2 working days.
                 </p>
                 <p className="flex items-center gap-2">
                   <Icon name="mail" size={14} className="text-pine-600" />
-                  Status updates go to {state.email}.
+                  Status updates would go to {state.email} after a real submission.
                 </p>
               </div>
               <p className="mt-5 text-xs text-ink-400">
-                This is a frontend demo — nothing was stored or sent.
+                This frontend demo did not store or send any data.
               </p>
               <div className="mt-7 flex justify-center gap-3">
                 <Button variant="outline" size="sm" onClick={() => { setSubmitted(null); setState(INITIAL_STATE); }}>
                   Register another
                 </Button>
-                <Button variant="primary" size="sm" onClick={() => router.push("/directory")}>
+                <Button variant="primary" size="sm" onClick={() => router.push("/explore-shops")}>
                   Back to directory
                 </Button>
               </div>
@@ -225,7 +246,7 @@ export default function RegisterPage() {
       <PageHeader
         eyebrow="Register your business"
         title="Join the bazar floor"
-        description="Ten minutes, one review by the IIC, and your venture appears in the directory. Demo only — submissions are validated locally and never stored."
+        description="The live service would send listings for IIC review. This demo validates details locally; nothing is submitted or stored."
         className="border-b border-paper-200 bg-paper-100/60"
       />
 
@@ -430,7 +451,7 @@ export default function RegisterPage() {
                 Demo form — no data leaves your browser.
               </p>
               <Button type="submit" size="lg" loading={submitting} icon="send" iconPosition="right">
-                Submit for review
+                Validate details
               </Button>
             </div>
           </form>
@@ -497,9 +518,9 @@ export default function RegisterPage() {
                 </h3>
                 <ol className="space-y-2.5 text-sm text-ink-600">
                   {[
-                    "The IIC reviews every new listing.",
-                    "Verified listings earn a badge within days.",
-                    "You can update details anytime from the demo admin.",
+                    "A live platform would send submitted listings to IIC review.",
+                    "Verification would follow an approval workflow.",
+                    "Seller profile updates would require an authenticated backend.",
                   ].map((step, index) => (
                     <li key={step} className="flex gap-2.5">
                       <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-pine-100 text-[11px] font-bold text-pine-700">

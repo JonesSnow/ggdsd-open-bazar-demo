@@ -9,6 +9,7 @@ const WEEKDAY_ORDER: Weekday[] = [
   "friday",
   "saturday",
 ];
+const CAMPUS_TIME_ZONE = "Asia/Kolkata";
 
 const toMinutes = (time: string): number => {
   const [hours = 0, minutes = 0] = time.split(":").map(Number);
@@ -19,20 +20,29 @@ const toMinutes = (time: string): number => {
  * Determines whether a location is open right now, based on the
  * visitor's local weekday and time. Returns a short label.
  */
-export function getOpenStatus(location: Location): {
+export function getOpenStatus(location: Location, now: Date = new Date()): {
   open: boolean;
   label: string;
 } {
-  const now = new Date();
-  const day = WEEKDAY_ORDER[now.getDay()];
-  const minutes = now.getHours() * 60 + now.getMinutes();
+  const day = getCampusWeekday(now);
+  const currentDay = WEEKDAY_ORDER.indexOf(day);
+  const [hours = 0, minutesPart = 0] = new Intl.DateTimeFormat("en-GB", {
+    timeZone: CAMPUS_TIME_ZONE,
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  })
+    .format(now)
+    .split(":")
+    .map(Number);
+  const minutes = hours * 60 + minutesPart;
 
   const today = location.hours.find(
     (entry: BusinessHours) => entry.day === day
   );
 
   if (!today || today.closed) {
-    const next = findNextOpenDay(location, now.getDay());
+    const next = findNextOpenDay(location, currentDay);
     return {
       open: false,
       label: next ? `Closed · opens ${next}` : "Closed today",
@@ -50,11 +60,21 @@ export function getOpenStatus(location: Location): {
     return { open: false, label: `Closed · opens ${formatTime(today.open)}` };
   }
 
-  const next = findNextOpenDay(location, now.getDay());
+  const next = findNextOpenDay(location, currentDay);
   return {
     open: false,
     label: next ? `Closed · opens ${next}` : "Closed for today",
   };
+}
+
+/** Weekday at the campus, independent of the server or visitor timezone. */
+export function getCampusWeekday(now: Date = new Date()): Weekday {
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: CAMPUS_TIME_ZONE,
+    weekday: "long",
+  })
+    .format(now)
+    .toLowerCase() as Weekday;
 }
 
 function findNextOpenDay(location: Location, currentDay: number): string | null {

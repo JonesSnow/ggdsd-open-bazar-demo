@@ -10,8 +10,10 @@ import { Icon } from "@/src/components/ui/icon";
  */
 export function CategoryShowcase({
   categories,
+  categoryCounts,
 }: {
   categories: Category[];
+  categoryCounts: Record<string, number>;
 }) {
   const featured = categories.filter((category) => category.featured);
   const [first, second, ...rest] = featured;
@@ -22,30 +24,34 @@ export function CategoryShowcase({
         <div className="mb-10 flex flex-col gap-6 sm:mb-14 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-pine-700">
-              Browse by category
+              Find your next favourite
             </p>
             <h2
               id="categories-heading"
               className="max-w-xl font-display text-3xl font-medium tracking-heading text-ink-950 text-balance sm:text-4xl"
             >
-              Ten corners of the bazar
+              Browse categories
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-600">
-              From hand-block prints at the main gate to peer tutoring in the
-              library commons — find your aisle.
+              Find student stalls, handmade products, food, services and more around campus.
             </p>
           </div>
-          <Link
-            href="/categories"
-            className="group inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-pine-700 transition-colors hover:text-pine-800"
-          >
-            View all categories
-            <Icon
-              name="arrow-right"
-              size={16}
-              className="transition-transform duration-150 group-hover:translate-x-1"
-            />
-          </Link>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <Link
+              href="/explore-shops"
+              className="group inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-pine-700 transition-colors hover:text-pine-800 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine-700"
+            >
+              Explore all shops
+              <Icon name="arrow-right" size={16} className="transition-transform duration-150 group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/categories"
+              className="group inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-ink-600 transition-colors hover:text-pine-800 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine-700"
+            >
+              View all categories
+              <Icon name="arrow-right" size={16} className="transition-transform duration-150 group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
@@ -56,6 +62,7 @@ export function CategoryShowcase({
               <CategoryTile
                 key={category.id}
                 category={category}
+              businessCount={categoryCounts[category.id] ?? 0}
                 large
                 className={cn(
                   "lg:row-span-2 lg:col-span-2",
@@ -69,13 +76,14 @@ export function CategoryShowcase({
             <CategoryTile
               key={category.id}
               category={category}
+              businessCount={categoryCounts[category.id] ?? 0}
               className={cn(index === 0 && "lg:order-2", index === 1 && "lg:order-4")}
             />
           ))}
           {/* All categories tile */}
           <Link
             href="/categories"
-            className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-card bg-pine-950 p-6 text-paper-100 transition-transform duration-200 hover:-translate-y-0.5 lg:order-5 lg:min-h-0"
+            className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-card bg-pine-950 p-6 text-paper-100 transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine-700 lg:order-5 lg:min-h-0"
           >
             <div aria-hidden="true" className="absolute -right-10 -top-10 h-40 w-40 rounded-full border-[18px] border-pine-900" />
             <div className="flex items-start justify-between">
@@ -101,10 +109,12 @@ export function CategoryShowcase({
 
 function CategoryTile({
   category,
+  businessCount,
   large = false,
   className,
 }: {
   category: Category;
+  businessCount: number;
   large?: boolean;
   className?: string;
 }) {
@@ -112,11 +122,11 @@ function CategoryTile({
     <Link
       href={`/categories/${category.slug}`}
       className={cn(
-        "group relative min-h-[220px] overflow-hidden rounded-card shadow-sm ring-1 ring-ink-950/5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lift",
+        "group relative min-h-[220px] overflow-hidden rounded-card shadow-sm ring-1 ring-ink-950/5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lift focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine-700",
         large ? "min-h-[280px]" : "",
         className
       )}
-      aria-label={`Browse ${category.name} — ${pluralize(category.businessCount, "business")}`}
+      aria-label={`Browse ${category.name} — ${pluralize(businessCount, "business")}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -140,7 +150,7 @@ function CategoryTile({
       <div className="relative flex h-full flex-col justify-between p-5 sm:p-6">
         <div className="flex items-center justify-between">
           <span className="rounded-full bg-white/85 px-3 py-1 text-[11px] font-semibold text-ink-800 backdrop-blur-sm">
-            {pluralize(category.businessCount, "business")}
+            {pluralize(businessCount, "business")}
           </span>
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/85 text-pine-800 transition-transform duration-300 group-hover:rotate-45 backdrop-blur-sm">
             <Icon name="arrow-up-right" size={16} />

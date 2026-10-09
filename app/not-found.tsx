@@ -1,9 +1,10 @@
-import { businesses } from "@/src/data/businesses";
+import { marketplaceService } from "@/src/services/marketplace";
 import { BusinessRow } from "@/src/components/business/business-card";
 import { Container, PageHeader } from "@/src/components/ui/section";
 import { ButtonLink } from "@/src/components/ui/button";
 
-export default function NotFoundPage() {
+export default async function NotFoundPage() {
+  const businesses = await marketplaceService.listPublicBusinesses();
   return (
     <>
       <PageHeader
@@ -22,7 +23,7 @@ export default function NotFoundPage() {
           <ButtonLink href="/" variant="primary" icon="home">
             Back to home
           </ButtonLink>
-          <ButtonLink href="/directory" variant="outline" icon="store">
+          <ButtonLink href="/explore-shops" variant="outline" icon="store">
             Browse the directory
           </ButtonLink>
         </div>

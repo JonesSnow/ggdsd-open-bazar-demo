@@ -76,13 +76,11 @@ export function ContactForm() {
           <Icon name="check" size={30} strokeWidth={2.5} />
         </span>
         <h2 className="mt-6 font-display text-2xl font-semibold text-ink-950">
-          Enquiry sent
+          Demo enquiry validated
         </h2>
         <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-ink-600">
-          Thanks, {form.name.split(" ")[0]} — your{" "}
-          {ENQUIRY_TYPES.find((type) => type.value === form.type)?.label.toLowerCase()}{" "}
-          has been noted. This is a demo, so nothing was actually
-          transmitted.
+          Thanks, {form.name.split(" ")[0]} — your message passed local validation.
+          This demo did not send or store the enquiry.
         </p>
         <Button
           variant="outline"
@@ -152,7 +150,7 @@ export function ContactForm() {
           Demo form — enquiries are simulated locally.
         </p>
         <Button type="submit" size="lg" loading={sending} icon="send" iconPosition="right">
-          Send enquiry
+          Validate enquiry
         </Button>
       </div>
     </form>

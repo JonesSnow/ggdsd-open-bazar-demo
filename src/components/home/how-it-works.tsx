@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { Icon, type IconName } from "@/src/components/ui/icon";
 import { Container, Reveal } from "@/src/components/ui/section";
 
@@ -11,19 +10,19 @@ const STEPS: {
     icon: "compass",
     title: "Discover",
     description:
-      "Browse the directory by category, location or rating — from the chai cart at the main gate to studios in the incubation center.",
+      "Browse sample listings by category, location or rating to see how a campus directory can make stalls and services easier to find.",
   },
   {
     icon: "message-circle",
     title: "Connect",
     description:
-      "Reach out directly through listed contacts, or drop an enquiry. Most campus vendors reply within a day, often faster.",
+      "Open a sample profile to preview the contact details and links a live directory could provide. This demo does not send enquiries.",
   },
   {
     icon: "trending-up",
     title: "Grow",
     description:
-      "Student ventures earn visibility, reviews and their first real customers. The IIC mentors the strongest ideas forward.",
+      "See one way student ventures could introduce their work. Real listings and support information will be added when confirmed.",
   },
 ];
 
@@ -39,12 +38,11 @@ export function HowItWorks() {
             id="why-open-bazar"
             className="font-display text-3xl font-medium tracking-heading text-paper-50 text-balance sm:text-4xl"
           >
-            More than a directory — a campus habit
+            A clearer way to explore campus ventures
           </h2>
           <p className="mt-4 text-base leading-relaxed text-pine-200/85">
-            Students find their first customers here. Alumni stay connected
-            to campus. And the IIC gets a front-row seat to the ideas
-            worth backing.
+            This prototype brings sample stalls, student ventures and campus
+            services into one place, so visitors can see how discovery could work.
           </p>
         </div>
 
@@ -72,37 +70,3 @@ export function HowItWorks() {
     </section>
   );
 }
-
-/** Stats band — the community impact numbers. */
-export function StatsBand({
-  stats,
-}: {
-  stats: { value: string; suffix?: string; label: string; icon: IconNode }[];
-}) {
-  return (
-    <section aria-label="Community impact numbers" className="border-y border-paper-200 bg-white py-12">
-      <Container>
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-start gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-pine-50 text-pine-700">
-                {stat.icon}
-              </span>
-              <div>
-                <dd className="font-display text-3xl font-semibold tracking-tight text-ink-950 tabular-nums sm:text-4xl">
-                  {stat.value}
-                  {stat.suffix && (
-                    <span className="ml-0.5 text-2xl text-pine-700">{stat.suffix}</span>
-                  )}
-                </dd>
-                <dt className="mt-1 text-sm text-ink-500">{stat.label}</dt>
-              </div>
-            </div>
-          ))}
-        </dl>
-      </Container>
-    </section>
-  );
-}
-
-type IconNode = ReactNode;

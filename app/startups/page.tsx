@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { businesses } from "@/src/data/businesses";
+import { marketplaceService } from "@/src/services/marketplace";
 import { siteConfig } from "@/src/data/site";
 import { StartupExplorer } from "@/src/components/startups/startup-explorer";
 import { StartupStages } from "@/src/components/startups/startup-stages";
@@ -31,8 +31,9 @@ const VENTURE_STATS: { type: string; label: string; note: string }[] = [
   },
 ];
 
-export default function StartupsPage() {
-  const ventures = businesses.filter((business) =>
+export default async function StartupsPage() {
+  const publicBusinesses = await marketplaceService.listPublicBusinesses();
+  const ventures = publicBusinesses.filter((business) =>
     ["student-entrepreneur", "startup", "alumni-startup", "iic-associated"].includes(
       business.type
     )

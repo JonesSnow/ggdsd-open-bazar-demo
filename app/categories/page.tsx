@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { Category } from "@/src/types";
-import { categories } from "@/src/data/categories";
-import { getBusinessesByCategory } from "@/src/data/businesses";
+import { marketplaceService } from "@/src/services/marketplace";
 import { artPath } from "@/src/utils/images";
 import { pluralize } from "@/src/utils/format";
 import { Container, PageHeader, Reveal, SectionHeading } from "@/src/components/ui/section";
@@ -13,8 +12,19 @@ export const metadata: Metadata = {
   description: "Browse the Open Bazar directory by category.",
 };
 
-export default function CategoriesPage() {
-  const sorted = [...categories].sort((a, b) => a.order - b.order);
+export default async function CategoriesPage() {
+  const [sorted, businesses] = await Promise.all([
+    marketplaceService.listCategories(),
+    marketplaceService.listPublicBusinesses(),
+  ]);
+  const categoryCounts = Object.fromEntries(
+    sorted.map((category) => [
+      category.id,
+      businesses.filter((business) =>
+        business.categoryIds.includes(category.id)
+      ).length,
+    ])
+  );
 
   return (
     <>
@@ -30,7 +40,10 @@ export default function CategoriesPage() {
         <div className="grid gap-5 lg:grid-cols-2">
           {sorted.filter((category) => category.featured).slice(0, 2).map((category, index) => (
             <Reveal key={category.id} delay={index * 80}>
-              <CategoryHeroCard category={category} />
+              <CategoryHeroCard
+                category={category}
+                count={categoryCounts[category.id] ?? 0}
+              />
             </Reveal>
           ))}
         </div>
@@ -44,8 +57,11 @@ export default function CategoriesPage() {
           />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {sorted.map((category, index) => (
-              <Reveal key={category.id} delay={(index % 3) * 70}>
-                <CategoryRowCard category={category} />
+              <Reveal key={category.id} delay={(index % 3) * 70} className="min-w-0">
+                <CategoryRowCard
+                  category={category}
+                  count={categoryCounts[category.id] ?? 0}
+                />
               </Reveal>
             ))}
           </div>
@@ -55,8 +71,13 @@ export default function CategoriesPage() {
   );
 }
 
-function CategoryHeroCard({ category }: { category: Category }) {
-  const count = getBusinessesByCategory(category.id).length;
+function CategoryHeroCard({
+  category,
+  count,
+}: {
+  category: Category;
+  count: number;
+}) {
   return (
     <Link
       href={`/categories/${category.slug}`}
@@ -75,7 +96,7 @@ function CategoryHeroCard({ category }: { category: Category }) {
       <div className="absolute inset-0 bg-linear-to-t from-ink-950/85 via-ink-950/20 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 p-7">
         <span className="rounded-full bg-white/85 px-3 py-1 text-[11px] font-semibold text-ink-800 backdrop-blur-sm">
-          {pluralize(count || category.businessCount, "business")}
+          {pluralize(count, "business")}
         </span>
         <h2 className="mt-3 font-display text-3xl font-semibold text-white text-balance">
           {category.name}
@@ -92,12 +113,17 @@ function CategoryHeroCard({ category }: { category: Category }) {
   );
 }
 
-function CategoryRowCard({ category }: { category: Category }) {
-  const count = getBusinessesByCategory(category.id).length;
+function CategoryRowCard({
+  category,
+  count,
+}: {
+  category: Category;
+  count: number;
+}) {
   return (
     <Link
       href={`/categories/${category.slug}`}
-      className="group flex items-center gap-4 rounded-card border border-paper-200 bg-white p-4 transition-all duration-150 hover:-translate-y-0.5 hover:border-pine-300 hover:shadow-soft"
+      className="group flex w-full min-w-0 items-center gap-4 rounded-card border border-paper-200 bg-white p-4 transition-all duration-150 hover:-translate-y-0.5 hover:border-pine-300 hover:shadow-soft"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -117,7 +143,7 @@ function CategoryRowCard({ category }: { category: Category }) {
           {category.description}
         </p>
         <p className="mt-1 text-xs font-medium text-pine-700">
-          {pluralize(count || category.businessCount, "business")}
+          {pluralize(count, "business")}
         </p>
       </div>
       <Icon
